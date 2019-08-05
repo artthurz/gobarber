@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   background: #fff;
@@ -27,6 +28,10 @@ export const Content = styled.div`
   a {
     font-weight: bold;
     color: #4169e1;
+
+    &:active {
+      color: #999;
+    }
   }
 
   aside {
@@ -46,6 +51,7 @@ export const Profile = styled.div`
     margin-right: 10px;
 
     strong {
+      margin-top: 10px;
       display: block;
       color: #333;
     }
@@ -55,11 +61,22 @@ export const Profile = styled.div`
       margin-top: 2px;
       font-size: 12px;
       color: #999;
+
+      &:hover {
+        color: ${darken(0.1, '#999')};
+      }
+
+      &:active {
+        color: #4169e1;
+      }
     }
   }
 
   img {
-    height: 32px;
+    height: 56px;
+    width: 56px;
     border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    background: #eee;
   }
 `;
