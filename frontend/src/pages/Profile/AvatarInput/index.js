@@ -37,10 +37,7 @@ export default function AvatarInput() {
   return (
     <Container>
       <label htmlFor="avatar">
-        <img
-          src={preview || 'https://personagenerator.com/user-blank.png'}
-          alt=""
-        />
+        <img src={preview} alt="Profile" />
         <input
           type="file"
           id="avatar"
