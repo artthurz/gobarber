@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const { app, BrowserWindow, shell, ipcMain } = require('electron');
 
 const path = require('path');
@@ -14,7 +15,8 @@ function onClosed() {
 function createWindow() {
   mainWindow = new BrowserWindow({
     minWidth: 880,
-    width: 900,
+    minHeight: 680,
+    width: 880,
     height: 680,
     backgroundColor: '#696c73',
     webPreferences: {
@@ -30,6 +32,7 @@ function createWindow() {
       ? 'http://localhost:3000'
       : `file://${path.join(__dirname, '../build/index.html')}`
   );
+  // mainWindow.webContents.openDevTools();
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
 
@@ -45,12 +48,6 @@ function createWindow() {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
-  }
-});
-
-app.on('activate', () => {
-  if (!mainWindow) {
-    mainWindow = createMainWindow();
   }
 });
 
