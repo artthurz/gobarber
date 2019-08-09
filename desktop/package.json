@@ -2,29 +2,31 @@
   "name": "gobarber",
   "version": "0.1.0",
   "productName": "GoBarber",
-  "main": "electron/main.js",
   "private": true,
   "author": {
     "name": "Arthur Hauenstein"
   },
   "homepage": "./",
+  "main": "public/electron.js",
   "scripts": {
-    "start": "react-app-rewired start",
+    "dev": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "electron-dev": "concurrently \"SET BROWSER=none&&yarn start\" \"wait-on http://localhost:3000&&electron .\""
+    "pack": "electron-builder --dir",
+    "start": "concurrently \"SET BROWSER=none&&yarn dev\" \"wait-on http://localhost:3000&&electron .\"",
+    "dist": "electron-builder"
   },
   "build": {
     "appId": "GoBarber",
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ]
-  },
-  "win": {
-    "target": "nsis",
-    "icon": "/public/icon.ico"
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    }
   },
   "dependencies": {
     "@rocketseat/unform": "^1.5.1",
