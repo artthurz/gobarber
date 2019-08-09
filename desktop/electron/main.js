@@ -1,13 +1,4 @@
-const electron = require('electron');
-
-const { app } = electron;
-const { BrowserWindow } = electron;
-
-// import TitleBar from '~/electron/TitleBar/index';
-
-// const path = require('path');
-// const url = require('url');
-// const isDev = require('electron-is-dev');
+const { app, BrowserWindow } = require('electron');
 
 let mainWindow;
 
@@ -15,7 +6,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 900,
     height: 680,
-    backgroundColor: '#2e2c29',
+    backgroundColor: '#4169e1',
     show: false,
     frame: true,
   });
