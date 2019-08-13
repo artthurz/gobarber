@@ -10,3 +10,11 @@
 ### Builted with ReactJS
 * Run "yarn" to download the dependencies.
 * Run "yarn start" to run the frontend.
+
+
+## Mobile
+###  Em desenvolvimento
+* Apenas a parte visual das telas de login e cadastro estão prontas.
+* Previsão de término dia 16/08.
+* Nela os clientes poderão realizar agendamentos com o barbeiro que desejar.
+
