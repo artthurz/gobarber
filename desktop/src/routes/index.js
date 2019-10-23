@@ -20,8 +20,8 @@ export default function Routes() {
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
       <Route path="/configuration" component={Configuration} isPrivate />
-      <Route path="/services" component={Services} isPrivate />
-      <Route path="/servicesupdate" component={ServicesUpdate} isPrivate />
+      <Route path="/servicescreate" component={Services} isPrivate />
+      <Route path="/services" component={ServicesUpdate} isPrivate />
     </Switch>
   );
 }

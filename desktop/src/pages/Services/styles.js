@@ -6,12 +6,38 @@ export const Container = styled.div`
   min-width: 600px;
   margin: 30px auto;
 
+  aside {
+    a {
+      color: #fff;
+    }
+    button {
+      align-self: right;
+      margin: 0 0 0;
+      height: 36px;
+      width: 100px;
+      background: #e1b941;
+      /*background: #69e141;*/
+      font-weight: bold;
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background 0.2s;
+
+      &:hover {
+        background: ${darken(0.08, '#e1b941')};
+       /* background: ${darken(0.08, '#69e141')};*/
+      }
+    }
+  }
+
   strong{
     display: flex;
     color: #fff;
     font-size: 24px;
     justify-content: center;
-    margin: 0 15px;
+    margin-right: 14%;
+    margin-left: 31%;
   }
 
   form {

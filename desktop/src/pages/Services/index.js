@@ -1,5 +1,6 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input } from '@rocketseat/unform';
+import { Link } from 'react-router-dom';
 import { Container, Service, Price, Slide } from './styles';
 
 import api from '~/services/api';
@@ -22,14 +23,19 @@ export default function Services() {
 
   return (
     <Container>
-      <strong>Cadastro de Serviços</strong>
+      <aside>
+        <strong>Cadastro de Serviços</strong>
+        <button>
+          <Link to="/services">Voltar</Link>
+        </button>
+      </aside>
       <Form initialData={null} onSubmit={handleSubmit}>
         <Input name="name" placeholder="Título" />
         <Input name="description" placeholder="Descrição" />
         <Input name="price" placeholder="Preço" />
         <Input name="duration" placeholder="Duração" />
         <hr />
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Salvar</button>
       </Form>
     </Container>
   );

@@ -15,9 +15,6 @@ export default function Menu() {
             <Link to="/services">Serviços</Link>
           </li>
           <li>
-            <Link to="/servicesupdate">Listar Serviços</Link>
-          </li>
-          <li>
             <Link to="/configuration">Configurações</Link>
           </li>
         </ul>

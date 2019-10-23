@@ -45,7 +45,12 @@ export default function ServicesUpdate() {
 
   return (
     <Container>
-      <strong>Editar Serviços</strong>
+      <aside>
+          <strong>Editar Serviços</strong>
+          <button>
+            <Link to="/servicescreate">Cadastrar</Link>
+          </button>
+      </aside>
       <Form initialData={serv} onSubmit={handleSubmit}>
         <Input name="id" placeholder="ID" disabled />
         <Input name="name" placeholder="Título" />
