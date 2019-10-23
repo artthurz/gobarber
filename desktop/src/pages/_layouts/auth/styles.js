@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   min-height: 100vh;
   min-height: 100vh;
   /*background: linear-gradient(-90deg, #4169e1, #41b9e1);*/
-  background: linear-gradient(-90deg, #060a16, #696c73);
+  background: linear-gradient(-90deg, #4169e1, #7159c1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +47,7 @@ export const Content = styled.div`
       margin: 5px 0 0;
       height: 44px;
       /*background: #e1b941;*/
-      background: #4169e1;
+      background: #3b9eff;
       font-weight: bold;
       color: #fff;
       border: 0;
@@ -56,7 +56,7 @@ export const Content = styled.div`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.05, '#4169e1')};
+        background: ${darken(0.05, '#3b9eff')};
       }
     }
 

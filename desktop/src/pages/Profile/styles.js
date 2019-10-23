@@ -3,6 +3,7 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
   max-width: 600px;
+  min-width: 600px;
   margin: 30px auto;
 
   form {
@@ -43,7 +44,7 @@ export const Container = styled.div`
       margin: 5px 0 0;
       height: 36px;
       /*background: #e1b941;*/
-      background: #4169e1;
+      background: #3b9eff;
       font-weight: bold;
       color: #fff;
       border: 0;
@@ -53,7 +54,7 @@ export const Container = styled.div`
 
       &:hover {
         /*background: ${darken(0.08, '#e1b941')};*/
-        background: ${darken(0.08, '#4169e1')};
+        background: ${darken(0.08, '#3b9eff')};
       }
     }
 

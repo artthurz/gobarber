@@ -4,11 +4,11 @@ import { darken } from 'polished';
 export const Container = styled.div`
   background: #fff;
   padding: 0 30px;
+  /*margin-left: 50px;*/
 `;
 
 export const Content = styled.div`
   height: 64px;
-  max-width: 900px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -17,6 +17,7 @@ export const Content = styled.div`
   nav {
     display: flex;
     align-items: center;
+    font-size: 18px;
 
     img {
       margin-right: 20px;
@@ -79,4 +80,11 @@ export const Profile = styled.div`
     border: 3px solid rgba(255, 255, 255, 0.3);
     background: #eee;
   }
+`;
+
+export const Configuration = styled.button`
+  margin-right: 10px;
+  background: none;
+  border: 0;
+  position: relative;
 `;

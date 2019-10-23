@@ -35,7 +35,7 @@ export default function SignIn() {
         />
 
         <button type="submit">{loading ? 'Carregando...' : 'Acessar'}</button>
-        <Link to="/register">Criar conta gratuita</Link>
+        <Link to="/register">Criar nova conta</Link>
       </Form>
     </>
   );

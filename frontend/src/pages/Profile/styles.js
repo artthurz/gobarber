@@ -42,7 +42,7 @@ export const Container = styled.div`
     button {
       margin: 5px 0 0;
       height: 36px;
-      background: #e1b941;
+      background: #3b9eff;
       font-weight: bold;
       color: #fff;
       border: 0;
@@ -51,7 +51,7 @@ export const Container = styled.div`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.08, '#e1b941')};
+        background: ${darken(0.08, '#3b9eff')};
       }
     }
 

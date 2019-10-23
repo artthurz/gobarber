@@ -7,6 +7,9 @@ import SignUp from '~/pages/SignUp';
 
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
+import Configuration from '~/pages/Configuration';
+import Services from '~/pages/Services';
+import ServicesUpdate from '~/pages/ServicesUpdate';
 
 export default function Routes() {
   return (
@@ -16,6 +19,9 @@ export default function Routes() {
 
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
+      <Route path="/configuration" component={Configuration} isPrivate />
+      <Route path="/services" component={Services} isPrivate />
+      <Route path="/servicesupdate" component={ServicesUpdate} isPrivate />
     </Switch>
   );
 }
