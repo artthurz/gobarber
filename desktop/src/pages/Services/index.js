@@ -35,7 +35,9 @@ export default function Services() {
         <Input name="price" placeholder="Preço" />
         <Input name="duration" placeholder="Duração" />
         <hr />
-        <button type="submit">Salvar</button>
+        <button type="submit">
+          <Link to="/services">Salvar</Link>
+        </button>
       </Form>
     </Container>
   );

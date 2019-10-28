@@ -10,9 +10,10 @@ export const Container = styled.div`
     a {
       color: #fff;
     }
+
     button {
       align-self: right;
-      margin: 0 0 0;
+      margin: 0;
       height: 36px;
       width: 100px;
       /*background: #e1b941;*/
@@ -126,71 +127,50 @@ export const Service = styled.div`
   border-radius: 4px;
   background: #fff;
 
-  }
-
   div {
     margin-bottom: 10px;
     strong {
       color: #4169e1;
       font-size: 24px;
-      margin: 0 15px;
+      margin-bottom: 5%;
     }
 
     span {
       color: #999;
       font-size: 14px;
       align-content: center;
-      margin: 5px;
+      margin: 0 5%;
     }
   }
 
   strong {
-      color: #999;
-      font-size: 14px;
-      margin: 0 5px;
-    }
+    color: #999;
+    font-size: 14px;
+    margin: 0 5%;
+  }
 
   span {
-      color: #999;
-      font-size: 14px;
-      margin: 0 5px;
-    }
-
-    button {
-      margin: 5px 0 0;
-      height: 36px;
-      width: 230px;
-      /*background: #e1b941;*/
-      background: #3b9eff;
-      font-weight: bold;
-      color: #fff;
-      border: 0;
-      border-radius: 4px;
-      font-size: 16px;
-      transition: background 0.2s;
-
-      &:hover {
-        /*background: ${darken(0.08, '#e1b941')};*/
-        background: ${darken(0.08, '#3b9eff')};
-      }
-    }
+    color: #999;
+    font-size: 14px;
+    margin: 0;
+  }
 `;
 
 export const Price = styled.div`
   aside {
     max-height: 15px;
     div {
+      margin: 0 5%;
       strong {
         color: #999;
         font-size: 14px;
-        margin: 0 5px;
       }
     }
 
     span {
       color: green;
       font-size: 14px;
-      margin: 0 5px;
+      margin: 0;
     }
   }
 `;
@@ -259,4 +239,47 @@ export const Slide = styled.div`
       transform: translateX(26px);
     }
   }
+`;
+
+export const BtnEditar = styled.button`
+  margin: 5px 0 0;
+  height: 36px;
+  width: 230px;
+  /*background: #e1b941;*/
+  background: #3b9eff;
+  font-weight: bold;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background 0.2s;
+
+  &:hover {
+    /*background: ${darken(0.08, '#e1b941')};*/
+    background: ${darken(0.08, '#3b9eff')};
+  }
+`;
+
+export const BtnDeletar = styled.button`
+  margin: 5px 0 0;
+  height: 36px;
+  width: 230px;
+  /*background: #e1b941;*/
+  background: #e14169;
+  font-weight: bold;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background 0.2s;
+
+  &:hover {
+    /*background: ${darken(0.08, '#e1b941')};*/
+    background: ${darken(0.08, '#e14169')};
+  }
+`;
+
+export const Buttons = styled.div`
+  margin-top: 5%;
+  margin-left: 5%;
 `;

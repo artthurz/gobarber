@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { Link } from 'react-router-dom';
-import { Container, Service, Price, Slide } from './styles';
+import {
+  Container,
+  Service,
+  Price,
+  Slide,
+  BtnDeletar,
+  BtnEditar,
+  Buttons,
+} from './styles';
 
 import api from '~/services/api';
 
@@ -46,10 +54,10 @@ export default function ServicesUpdate() {
   return (
     <Container>
       <aside>
-          <strong>Editar Serviços</strong>
-          <button>
-            <Link to="/servicescreate">Cadastrar</Link>
-          </button>
+        <strong>Editar Serviços</strong>
+        <button>
+          <Link to="/servicescreate">Cadastrar</Link>
+        </button>
       </aside>
       <Form initialData={serv} onSubmit={handleSubmit}>
         <Input name="id" placeholder="ID" disabled />
@@ -96,9 +104,17 @@ export default function ServicesUpdate() {
               <span>{service.duration} minutos</span>
             </aside>
             <span>{service.active}</span>
-            <button type="button" onClick={() => handleSelect(service.id)}>
-              Selecionar
-            </button>
+            <Buttons>
+              <BtnEditar type="button" onClick={() => handleSelect(service.id)}>
+                Editar
+              </BtnEditar>
+              <BtnDeletar
+                type="button"
+                onClick={() => handleSelect(service.id)}
+              >
+                Deletar
+              </BtnDeletar>
+            </Buttons>
           </Service>
         ))}
       </ul>
