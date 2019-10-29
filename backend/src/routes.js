@@ -12,6 +12,7 @@ import NotificationController from './app/controllers/NotificationController';
 import AvailableController from './app/controllers/AvailableController';
 import HoraryController from './app/controllers/HoraryController';
 import ServicesController from './app/controllers/ServicesController';
+import PeoplesController from './app/controllers/PeoplesController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -45,5 +46,10 @@ routes.put('/configuration/horary', HoraryController.update);
 routes.get('/configuration/services', ServicesController.index);
 routes.post('/configuration/services', ServicesController.store);
 routes.put('/configuration/services/:id', ServicesController.update);
+
+routes.get('/configuration/peoples', PeoplesController.index);
+routes.post('/configuration/peoples', PeoplesController.store);
+routes.put('/configuration/peoples/:id', PeoplesController.update);
+routes.delete('/configuration/peoples/:id', PeoplesController.delete);
 
 export default routes;
