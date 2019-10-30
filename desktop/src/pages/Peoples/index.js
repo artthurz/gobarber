@@ -1,42 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { Link } from 'react-router-dom';
-import { Container, Service, Price, Slide } from './styles';
+import { Container, People, Price, Slide } from './styles';
 
 import api from '~/services/api';
 
-export default function Services() {
-  const [services, setServices] = useState([]);
+export default function Peoples() {
+  const [peoples, setPeoples] = useState([]);
 
   useEffect(() => {
-    async function loadServices() {
-      const response = await api.get('configuration/services');
+    async function loadPeoples() {
+      const response = await api.get('configuration/peoples');
 
-      setServices(response.data);
+      setPeoples(response.data);
     }
-    loadServices();
-  }, [services]);
+    loadPeoples();
+  }, [peoples]);
 
   async function handleSubmit(data) {
-    await api.post('configuration/services', data);
+    await api.post('configuration/peoples', data);
   }
 
   return (
     <Container>
       <aside>
-        <strong>Cadastro de Serviços</strong>
+        <strong>Cadastro de Pessoas</strong>
         <button>
-          <Link to="/services">Voltar</Link>
+          <Link to="/peoples">Voltar</Link>
         </button>
       </aside>
       <Form initialData={null} onSubmit={handleSubmit}>
-        <Input name="name" placeholder="Título" />
-        <Input name="description" placeholder="Descrição" />
-        <Input name="price" placeholder="Preço" />
-        <Input name="duration" placeholder="Duração" />
+        <Input name="name" placeholder="Nome" />
+        <Input name="price" placeholder="Telefone" />
+        <Input name="duration" placeholder="E-mail" />
+        <Input name="description" placeholder="Aniversário" />
+        <Input name="duration" placeholder="CPF" />
+        <Input name="duration" placeholder="RG" />
+        {/* <aside>
+          <span>Fornecedor: </span>
+          <Slide>
+            <label className="switch">
+              <Input
+                name="provider"
+                type="checkbox"
+                placeholder="active"
+                onClick={() => handleMarkAsActive(serv.id)}
+              />
+              <div className="slider" />
+            </label>
+          </Slide>
+        </aside> */}
+        {/* <Input name="duration" placeholder="Usuário" /> */}        
         <hr />
         <button type="submit">
-          <Link to="/services">Salvar</Link>
+          <Link to="/peoples">Salvar</Link>
         </button>
       </Form>
     </Container>

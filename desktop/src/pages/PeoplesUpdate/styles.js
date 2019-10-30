@@ -122,7 +122,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Service = styled.div`
+export const People = styled.div`
   padding: 20px;
   border-radius: 4px;
   background: #fff;

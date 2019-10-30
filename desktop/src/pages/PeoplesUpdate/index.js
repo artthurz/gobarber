@@ -3,7 +3,7 @@ import { Form, Input } from '@rocketseat/unform';
 import { Link } from 'react-router-dom';
 import {
   Container,
-  Service,
+  People,
   Price,
   Slide,
   BtnDeletar,
@@ -13,38 +13,38 @@ import {
 
 import api from '~/services/api';
 
-export default function ServicesUpdate() {
-  const [services, setServices] = useState([]);
+export default function PeoplesUpdate() {
+  const [peoples, setPeoples] = useState([]);
   const [serv, setServ] = useState([]);
 
   useEffect(() => {
-    async function loadServices() {
-      const response = await api.get('configuration/services');
+    async function loadPeoples() {
+      const response = await api.get('configuration/peoples');
 
-      setServices(response.data);
+      setPeoples(response.data);
     }
-    loadServices();
-  }, [services]);
+    loadPeoples();
+  }, [peoples]);
 
   async function handleSubmit(data) {
-    await api.put(`configuration/services/${data.id}`, data);
+    await api.put(`configuration/peoples/${data.id}`, data);
   }
 
   async function handleSelect(id) {
-    setServ(services.find(service => (service.id === id ? service : null)));
+    setServ(peoples.find(people => (people.id === id ? people : null)));
   }
 
   async function handleMarkAsActive(id) {
-    await api.put(`configuration/services/${id}`, {
+    await api.put(`configuration/peoples/${id}`, {
       ...serv,
       active: !serv.active,
     });
 
-    setServices(
-      services.map(service =>
-        services.id === id
-          ? { ...services, active: !services.active }
-          : services
+    setPeoples(
+      peoples.map(people =>
+        peoples.id === id
+          ? { ...peoples, active: !peoples.active }
+          : peoples
       )
     );
 
@@ -54,18 +54,18 @@ export default function ServicesUpdate() {
   return (
     <Container>
       <aside>
-        <strong>Editar Serviços</strong>
+        <strong>Editar Pessoas</strong>
         <button>
-          <Link to="/servicescreate">Cadastrar</Link>
+          <Link to="/peoplescreate">Cadastrar</Link>
         </button>
       </aside>
       <Form initialData={serv} onSubmit={handleSubmit}>
         <Input name="id" placeholder="ID" disabled />
-        <Input name="name" placeholder="Título" />
-        <Input name="description" placeholder="Descrição" />
-        <Input name="price" placeholder="Preço" />
-        <Input name="duration" placeholder="Duração" />
-        <aside>
+        <Input name="name" placeholder="Nome" />
+        <Input name="birth_date" placeholder="Aniversário" />
+        <Input name="fone" placeholder="Telefone" />
+        <Input name="email" placeholder="Email" />
+        {/* <aside>
           <span>Ativo: </span>
           <Slide>
             <label className="switch">
@@ -79,43 +79,43 @@ export default function ServicesUpdate() {
               <div className="slider" />
             </label>
           </Slide>
-        </aside>
+        </aside> */}
         <hr />
         <button type="submit">Salvar</button>
       </Form>
-      <strong>Serviços cadastrados</strong>
+      <strong>Pessoas cadastrados</strong>
       <ul>
-        {services.map(service => (
-          <Service key={service.name}>
+        {peoples.map(people => (
+          <People key={people.name}>
             <div>
-              <strong>{service.name}</strong>
-              <span>{service.description}</span>
+              <strong>{people.name}</strong>
+              <span>{people.description}</span>
             </div>
             <Price>
               <aside>
                 <div>
-                  <strong>Preço: </strong>
+                  <strong>Aniversário: </strong>
                 </div>
-                <span>R${service.price}</span>
+                <span>{people.birth_date}</span>
               </aside>
             </Price>
             <aside>
-              <strong>Duração: </strong>
-              <span>{service.duration} minutos</span>
+              <strong>Telefone: </strong>
+              <span>{people.fone} minutos</span>
             </aside>
-            <span>{service.active}</span>
+            <span>{people.active}</span>
             <Buttons>
-              <BtnEditar type="button" onClick={() => handleSelect(service.id)}>
+              <BtnEditar type="button" onClick={() => handleSelect(people.id)}>
                 Editar
               </BtnEditar>
               <BtnDeletar
                 type="button"
-                onClick={() => handleSelect(service.id)}
+                onClick={() => handleSelect(people.id)}
               >
                 Deletar
               </BtnDeletar>
             </Buttons>
-          </Service>
+          </People>
         ))}
       </ul>
     </Container>
