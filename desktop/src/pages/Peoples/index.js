@@ -31,11 +31,11 @@ export default function Peoples() {
       </aside>
       <Form initialData={null} onSubmit={handleSubmit}>
         <Input name="name" placeholder="Nome" />
-        <Input name="price" placeholder="Telefone" />
-        <Input name="duration" placeholder="E-mail" />
-        <Input name="description" placeholder="Aniversário" />
-        <Input name="duration" placeholder="CPF" />
-        <Input name="duration" placeholder="RG" />
+        <Input name="fone" placeholder="Telefone" />
+        <Input name="email" placeholder="E-mail" />
+        <Input name="birth_date" placeholder="Aniversário" />
+        <Input name="cpf" placeholder="CPF" />
+        <Input name="rg" placeholder="RG" /> 
         {/* <aside>
           <span>Fornecedor: </span>
           <Slide>

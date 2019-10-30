@@ -36,10 +36,14 @@ module.exports = {
       provider: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
+        defaultValue: false,        
       },
       email: {
         type: Sequelize.STRING,
         allowNull: true,
+      },
+      canceled_at: {
+        type: Sequelize.DATE,
       },
       created_at: {
         type: Sequelize.DATE,

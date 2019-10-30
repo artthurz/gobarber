@@ -14,6 +14,7 @@ class Peoples extends Model {
         email: Sequelize.STRING,
         created_at: Sequelize.DATE,
         updated_at: Sequelize.DATE,
+        canceled_at: Sequelize.DATE,
       },
       {
         sequelize,
