@@ -1,4 +1,5 @@
 Arguments: 
+<<<<<<< HEAD
   C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
 
 PATH: 
@@ -6,6 +7,15 @@ PATH:
 
 Yarn version: 
   1.16.0
+=======
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add *
+
+PATH: 
+  C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Java\jdk1.8.0_211\bin;C:\Android\Sdk\platform-tools;C:\Android\Sdk\tools;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Git\cmd;C:\Users\arthur_hauenstein\AppData\Local\Microsoft\WindowsApps;C:\Users\arthur_hauenstein\AppData\Roaming\npm;C:\Users\arthur_hauenstein\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\arthur_hauenstein\AppData\Local\hyper\app-3.0.2\resources\bin;C:\Users\arthur_hauenstein\AppData\Local\GitHubDesktop\bin;C:\Users\arthur_hauenstein\AppData\Local\Yarn\bin
+
+Yarn version: 
+  1.17.3
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
 
 Node version: 
   12.4.0
@@ -14,11 +24,25 @@ Platform:
   win32 x64
 
 Trace: 
+<<<<<<< HEAD
   Error: self signed certificate in certificate chain
       at TLSSocket.onConnectSecure (_tls_wrap.js:1317:34)
       at TLSSocket.emit (events.js:200:13)
       at TLSSocket._finishInit (_tls_wrap.js:792:8)
       at TLSWrap.ssl.onhandshakedone (_tls_wrap.js:606:12)
+=======
+  Error: https://registry.yarnpkg.com/*: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65939:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140464:22)
+      at Request.emit (events.js:200:13)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141436:10)
+      at Request.emit (events.js:200:13)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141358:12)
+      at Object.onceWrapper (events.js:288:20)
+      at IncomingMessage.emit (events.js:205:15)
+      at endReadableNT (_stream_readable.js:1154:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:9)
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
 
 npm manifest: 
   {
@@ -38,8 +62,12 @@ npm manifest:
       "eject": "react-scripts eject",
       "pack": "electron-builder --dir",
       "start": "concurrently \"SET BROWSER=none&&yarn dev\" \"wait-on http://localhost:3000&&electron .\"",
+<<<<<<< HEAD
       "dist": "electron-builder",
       "production": "yarn build&&yarn dist"
+=======
+      "dist": "electron-builder"
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
     },
     "build": {
       "appId": "GoBarber",
@@ -49,12 +77,19 @@ npm manifest:
       },
       "win": {
         "target": "nsis",
+<<<<<<< HEAD
         "icon": "assets/icon.png"
+=======
+        "icon": "assets/icon.ico"
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
       }
     },
     "dependencies": {
       "@rocketseat/unform": "^1.5.1",
+<<<<<<< HEAD
       "@trendmicro/react-sidenav": "^0.4.5",
+=======
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
       "axios": "^0.19.0",
       "concurrently": "^4.1.1",
       "date-fns": "^2.0.0-beta.3",
@@ -63,7 +98,10 @@ npm manifest:
       "foreman": "^3.0.1",
       "history": "^4.9.0",
       "immer": "^3.1.3",
+<<<<<<< HEAD
       "is-what": "^3.3.1",
+=======
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
       "polished": "^3.4.1",
       "prop-types": "^15.7.2",
       "react": "^16.8.6",
@@ -1441,6 +1479,7 @@ Lockfile:
     dependencies:
       defer-to-connect "^1.0.1"
   
+<<<<<<< HEAD
   "@trendmicro/react-sidenav@^0.4.5":
     version "0.4.5"
     resolved "https://registry.yarnpkg.com/@trendmicro/react-sidenav/-/react-sidenav-0.4.5.tgz#a642af5c4dbfde259ce6b2ad9d884fed337a20c4"
@@ -1452,6 +1491,8 @@ Lockfile:
       uncontrollable "^4.1.0"
       warning "^3.0.0"
   
+=======
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
   "@types/babel__core@^7.1.0":
     version "7.1.1"
     resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.1.tgz#ce9a9e5d92b7031421e1d0d74ae59f572ba48be6"
@@ -2768,11 +2809,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/ccount/-/ccount-1.0.4.tgz#9cf2de494ca84060a2a8d2854edd6dfb0445f386"
     integrity sha512-fpZ81yYfzentuieinmGnphk0pLkOTMm6MZdVqwd77ROvhko6iujLNGrHH5E7utq3ygWklwfmwuG+A7P+NpqT6w==
   
+<<<<<<< HEAD
   chained-function@^0.5.0:
     version "0.5.0"
     resolved "https://registry.yarnpkg.com/chained-function/-/chained-function-0.5.0.tgz#2564bbdfdf7803194bebf75a6b2bd041ede23b3a"
     integrity sha1-JWS73994AxlL6/daayvQQe3iOzo=
   
+=======
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
   chalk@2.4.2, chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.4.1, chalk@^2.4.2:
     version "2.4.2"
     resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
@@ -2857,7 +2901,11 @@ Lockfile:
       isobject "^3.0.0"
       static-extend "^0.1.1"
   
+<<<<<<< HEAD
   classnames@^2.2.5, classnames@^2.2.6:
+=======
+  classnames@^2.2.6:
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
     version "2.2.6"
     resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
     integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -5742,7 +5790,11 @@ Lockfile:
       default-gateway "^4.2.0"
       ipaddr.js "^1.9.0"
   
+<<<<<<< HEAD
   invariant@^2.1.0, invariant@^2.2.2, invariant@^2.2.4:
+=======
+  invariant@^2.2.2, invariant@^2.2.4:
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
     version "2.2.4"
     resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
     integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -6048,7 +6100,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
     integrity sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=
   
+<<<<<<< HEAD
   is-what@^3.2.4, is-what@^3.3.1:
+=======
+  is-what@^3.2.4:
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
     version "3.3.1"
     resolved "https://registry.yarnpkg.com/is-what/-/is-what-3.3.1.tgz#79502181f40226e2d8c09226999db90ef7c1bcbe"
     integrity sha512-seFn10yAXy+yJlTRO+8VfiafC+0QJanGLMPTBWLrJm/QPauuchy0UXh8B6H5o9VA8BAzk0iYievt6mNp6gfaqA==
@@ -8964,7 +9020,11 @@ Lockfile:
       kleur "^3.0.2"
       sisteransi "^1.0.0"
   
+<<<<<<< HEAD
   prop-types@^15.5.4, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+=======
+  prop-types@^15.5.4, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
     version "15.7.2"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
     integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -11064,6 +11124,7 @@ Lockfile:
       commander "~2.20.0"
       source-map "~0.6.1"
   
+<<<<<<< HEAD
   uncontrollable@^4.1.0:
     version "4.1.0"
     resolved "https://registry.yarnpkg.com/uncontrollable/-/uncontrollable-4.1.0.tgz#e0358291252e1865222d90939b19f2f49f81c1a9"
@@ -11071,6 +11132,8 @@ Lockfile:
     dependencies:
       invariant "^2.1.0"
   
+=======
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
   unicode-canonical-property-names-ecmascript@^1.0.4:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-1.0.4.tgz#2619800c4c825800efdd8343af7dd9933cbe2818"
@@ -11417,6 +11480,7 @@ Lockfile:
     dependencies:
       makeerror "1.0.x"
   
+<<<<<<< HEAD
   warning@^3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
@@ -11424,6 +11488,8 @@ Lockfile:
     dependencies:
       loose-envify "^1.0.0"
   
+=======
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
   watchpack@^1.5.0:
     version "1.6.0"
     resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.6.0.tgz#4bc12c2ebe8aa277a71f1d3f14d685c7b446cd00"

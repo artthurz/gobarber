@@ -34,10 +34,13 @@ export default function ServicesUpdate() {
     setServ(services.find(service => (service.id === id ? service : null)));
   }
 
+<<<<<<< HEAD
   async function handleDelete(id) {
     await api.delete(`configuration/services/${id}`);
   }
 
+=======
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
   async function handleMarkAsActive(id) {
     await api.put(`configuration/services/${id}`, {
       ...serv,
@@ -114,7 +117,11 @@ export default function ServicesUpdate() {
               </BtnEditar>
               <BtnDeletar
                 type="button"
+<<<<<<< HEAD
                 onClick={() => handleDelete(service.id)}
+=======
+                onClick={() => handleSelect(service.id)}
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
               >
                 Deletar
               </BtnDeletar>

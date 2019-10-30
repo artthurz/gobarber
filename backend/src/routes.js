@@ -46,7 +46,10 @@ routes.put('/configuration/horary', HoraryController.update);
 routes.get('/configuration/services', ServicesController.index);
 routes.post('/configuration/services', ServicesController.store);
 routes.put('/configuration/services/:id', ServicesController.update);
+<<<<<<< HEAD
 routes.delete('/configuration/services/:id', ServicesController.delete);
+=======
+>>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
 
 routes.get('/configuration/peoples', PeoplesController.index);
 routes.post('/configuration/peoples', PeoplesController.store);
