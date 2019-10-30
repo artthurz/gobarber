@@ -1,9 +1,9 @@
-import Peoples from '../models/People';
+import Peoples from '../models/Peoples';
 
 class PeoplesController {
   async index(req, res) {
     const peoples = await Peoples.findAll({
-      attributes: ['id', 'name', 'birth_date', 'fone', 'email'],
+      peoples: ['id', 'name', 'birth_date', 'fone', 'email'],
     });
 
     return res.json(peoples);
@@ -25,7 +25,7 @@ class PeoplesController {
       updated_at
     });
     
-    return res.json(Peoples);
+    return res.json(peoples);
   }
 
   async update(req, res) {
@@ -62,11 +62,12 @@ class PeoplesController {
   }
 
   async delete(req, res) {
-    const people = await Peoples.findByPk(req.params.id, {});
+    
+    // console.log(req.params.id);
 
-    await people.delete();
+    // await Peoples.delete({},{ where: { id: req.params.id } });
 
-    return res.json({success: true});
+    return res.json({success: true, mensagem: "Sem funcionalidade"});
   }
 }
 
