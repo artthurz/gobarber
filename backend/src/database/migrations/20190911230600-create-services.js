@@ -28,12 +28,9 @@ module.exports = {
         defaultValue: true,
         allowNull: false,
       },
-<<<<<<< HEAD
       canceled_at: {
         type: Sequelize.DATE,
       },
-=======
->>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

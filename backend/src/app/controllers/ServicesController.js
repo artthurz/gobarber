@@ -3,10 +3,7 @@ import Services from '../models/Services';
 class ServicesController {
   async index(req, res) {
     const services = await Services.findAll({
-<<<<<<< HEAD
       where: { canceled_at: null },
-=======
->>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
       attributes: ['id', 'name', 'description', 'price', 'duration', 'active'],
     });
 
@@ -49,7 +46,6 @@ class ServicesController {
       active,
     });
   }
-<<<<<<< HEAD
 
   async delete(req, res) {
     const services = await Services.findByPk(req.params.id);
@@ -60,8 +56,6 @@ class ServicesController {
 
     return res.json(services);
   }
-=======
->>>>>>> 92011715f34b9c5c39d5641d9b2fbd9c04f9f710
 }
 
 export default new ServicesController();
