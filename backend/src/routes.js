@@ -10,6 +10,9 @@ import AppointmentController from './app/controllers/AppointmentController';
 import ScheduleController from './app/controllers/ScheduleController';
 import NotificationController from './app/controllers/NotificationController';
 import AvailableController from './app/controllers/AvailableController';
+import HoraryController from './app/controllers/HoraryController';
+import ServicesController from './app/controllers/ServicesController';
+import PeoplesController from './app/controllers/PeoplesController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -36,5 +39,18 @@ routes.get('/notifications', NotificationController.index);
 routes.put('/notifications/:id', NotificationController.update);
 
 routes.post('/files', upload.single('file'), FileController.store);
+
+routes.get('/configuration/horary', HoraryController.index);
+routes.put('/configuration/horary', HoraryController.update);
+
+routes.get('/configuration/services', ServicesController.index);
+routes.post('/configuration/services', ServicesController.store);
+routes.put('/configuration/services/:id', ServicesController.update);
+routes.delete('/configuration/services/:id', ServicesController.delete);
+
+routes.get('/configuration/peoples', PeoplesController.index);
+routes.post('/configuration/peoples', PeoplesController.store);
+routes.put('/configuration/peoples/:id', PeoplesController.update);
+routes.delete('/configuration/peoples/:id', PeoplesController.delete);
 
 export default routes;

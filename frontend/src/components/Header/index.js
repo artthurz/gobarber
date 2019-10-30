@@ -28,13 +28,7 @@ export default function Header() {
               <strong>{profile.name}</strong>
               <Link to="/profile">Meu perfil</Link>
             </div>
-            <img
-              src={
-                profile.avatar.url ||
-                'https://personagenerator.com/user-blank.png'
-              }
-              alt="Arthur Hauenstein"
-            />
+            <img src={profile.avatar.url} alt="Profile" />
           </Profile>
         </aside>
       </Content>
