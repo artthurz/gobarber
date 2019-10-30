@@ -37,7 +37,7 @@ export default function ServicesUpdate() {
   async function handleDelete(id) {
     await api.delete(`configuration/services/${id}`);
   }
-
+    
   async function handleMarkAsActive(id) {
     await api.put(`configuration/services/${id}`, {
       ...serv,
