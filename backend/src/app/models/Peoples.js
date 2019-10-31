@@ -12,8 +12,7 @@ class Peoples extends Model {
         rg: Sequelize.STRING,
         provider: Sequelize.BOOLEAN,
         email: Sequelize.STRING,
-        created_at: Sequelize.DATE,
-        updated_at: Sequelize.DATE,
+        canceled_at: Sequelize.DATE,
       },
       {
         sequelize,
@@ -26,7 +25,6 @@ class Peoples extends Model {
   static associate(models) {
     this.belongsTo(models.User, { foreignKey: 'users_id', as: 'user' });
   }
-
 }
 
 export default Peoples;

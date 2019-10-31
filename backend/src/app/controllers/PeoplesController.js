@@ -3,6 +3,7 @@ import Peoples from '../models/Peoples';
 class PeoplesController {
   async index(req, res) {
     const peoples = await Peoples.findAll({
+      where: { canceled_at: null },
       peoples: ['id', 'name', 'birth_date', 'fone', 'email'],
     });
 
@@ -10,7 +11,18 @@ class PeoplesController {
   }
 
   async store(req, res) {
-    const { users_id, name, birth_date, fone, cpf, rg, provider, email, created_at, updated_at } = req.body;
+    const {
+      users_id,
+      name,
+      birth_date,
+      fone,
+      cpf,
+      rg,
+      provider,
+      email,
+      created_at,
+      updated_at,
+    } = req.body;
 
     const peoples = await Peoples.create({
       users_id,
@@ -22,14 +34,25 @@ class PeoplesController {
       provider,
       email,
       created_at,
-      updated_at
+      updated_at,
     });
-    
+
     return res.json(peoples);
   }
 
   async update(req, res) {
-    const { users_id, name, birth_date, fone, cpf, rg, provider, email, created_at, updated_at  } = req.body;
+    const {
+      users_id,
+      name,
+      birth_date,
+      fone,
+      cpf,
+      rg,
+      provider,
+      email,
+      created_at,
+      updated_at,
+    } = req.body;
 
     const peoples = await Peoples.update(
       {
@@ -42,7 +65,7 @@ class PeoplesController {
         provider,
         email,
         created_at,
-        updated_at
+        updated_at,
       },
       { where: { id: req.params.id } }
     );
@@ -57,17 +80,18 @@ class PeoplesController {
       provider,
       email,
       created_at,
-      updated_at
+      updated_at,
     });
   }
 
   async delete(req, res) {
-    
-    // console.log(req.params.id);
+    const peoples = await Peoples.findByPk(req.params.id);
 
-    // await Peoples.delete({},{ where: { id: req.params.id } });
+    peoples.canceled_at = new Date();
 
-    return res.json({success: true, mensagem: "Sem funcionalidade"});
+    await peoples.save();
+
+    return res.json(peoples);
   }
 }
 

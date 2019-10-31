@@ -30,25 +30,12 @@ export default function PeoplesUpdate() {
     await api.put(`configuration/peoples/${data.id}`, data);
   }
 
-  async function handleSelect(id) {
-    setServ(peoples.find(people => (people.id === id ? people : null)));
+  async function handleDelete(id) {
+    await api.delete(`configuration/peoples/${id}`);
   }
 
-  async function handleMarkAsActive(id) {
-    await api.put(`configuration/peoples/${id}`, {
-      ...serv,
-      active: !serv.active,
-    });
-
-    setPeoples(
-      peoples.map(people =>
-        peoples.id === id
-          ? { ...peoples, active: !peoples.active }
-          : peoples
-      )
-    );
-
-    setServ(!serv.active);
+  async function handleSelect(id) {
+    setServ(peoples.find(people => (people.id === id ? people : null)));
   }
 
   return (
@@ -103,15 +90,11 @@ export default function PeoplesUpdate() {
               <strong>Telefone: </strong>
               <span>{people.fone} minutos</span>
             </aside>
-            <span>{people.active}</span>
             <Buttons>
               <BtnEditar type="button" onClick={() => handleSelect(people.id)}>
                 Editar
               </BtnEditar>
-              <BtnDeletar
-                type="button"
-                onClick={() => handleSelect(people.id)}
-              >
+              <BtnDeletar type="button" onClick={() => handleDelete(people.id)}>
                 Deletar
               </BtnDeletar>
             </Buttons>
