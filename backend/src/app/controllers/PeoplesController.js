@@ -83,7 +83,7 @@ class PeoplesController {
       updated_at,
     });
   }
-
+  
   async delete(req, res) {
     const peoples = await Peoples.findByPk(req.params.id);
 
