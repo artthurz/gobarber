@@ -5,6 +5,7 @@ import User from '../models/User';
 import File from '../models/File';
 import Appointment from '../models/Appointment';
 import Notification from '../schemas/Notification';
+import AppointmentsServices from '../models/AppointmentsServices';
 
 import CancellationMail from '../jobs/CancellationMail';
 import Queue from '../../lib/Queue';
@@ -42,13 +43,14 @@ class AppointmentController {
     const schema = Yup.object().shape({
       provider_id: Yup.number().required(),
       date: Yup.date().required(),
+      services_id: Yup.array().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails' });
     }
 
-    const { provider_id, date } = req.body;
+    const { provider_id, date, services_id } = req.body;
 
     /**
      * Check if provider_id is a provider
@@ -106,6 +108,25 @@ class AppointmentController {
       date,
     });
 
+    const appointments = await Appointment.findAll();
+
+    const appointmentId = appointments[appointments.length - 1];
+
+    const appserv = [];
+
+    for (let i = 0; i < services_id.length; i++) {
+      appserv[appserv.length] = {
+        appointments_id: appointmentId.id,
+        services_id: services_id[i],
+      };
+    }
+
+    console.log(appserv);
+
+    const services = await AppointmentsServices.bulkCreate(appserv, {
+      returning: true,
+    });
+
     /**
      * Notify appointment provider
      */
@@ -124,7 +145,7 @@ class AppointmentController {
       user: provider_id,
     });
 
-    return res.json(appointment);
+    return res.json({ appointment, services });
   }
 
   async delete(req, res) {
