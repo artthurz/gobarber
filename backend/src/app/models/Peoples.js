@@ -12,7 +12,7 @@ class Peoples extends Model {
         rg: Sequelize.STRING,
         provider: Sequelize.BOOLEAN,
         email: Sequelize.STRING,
-        canceled_at: Sequelize.DATE,
+        status: Sequelize.BOOLEAN,
       },
       {
         sequelize,

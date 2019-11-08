@@ -28,8 +28,10 @@ module.exports = {
         defaultValue: true,
         allowNull: false,
       },
-      canceled_at: {
-        type: Sequelize.DATE,
+      status: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,

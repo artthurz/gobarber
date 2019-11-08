@@ -3,11 +3,21 @@ import User from '../models/User';
 import File from '../models/File';
 
 class UserController {
+
+  async index(req, res) {
+    const users = await User.findAll({
+      where: { status: true },
+      users: ['id', 'name', 'login', 'admin', 'status'],
+    });
+
+    return res.json(users);
+  }
+
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
-      email: Yup.string()
-        .email()
+      login: Yup.string()
         .required(),
       password: Yup.string()
         .required()
@@ -20,13 +30,13 @@ class UserController {
       return res.status(400).json({ error: 'Validation fails' });
     }
 
-    const userExists = await User.findOne({ where: { email: req.body.email } });
+    const userExists = await User.findOne({ where: { login: req.body.login } });
 
     if (userExists) {
       return res.status(400).json({ error: 'User already exists.' });
     }
 
-    const { id, name, email, provider } = await User.create({
+    const { id, name, login, admin } = await User.create({
       ...req.body,
       avatar_id,
     });
@@ -34,8 +44,8 @@ class UserController {
     return res.json({
       id,
       name,
-      email,
-      provider,
+      login,
+      admin,
       avatar_id,
     });
   }
@@ -43,7 +53,7 @@ class UserController {
   async update(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string(),
-      email: Yup.string().email(),
+      login: Yup.string(),
       oldPassword: Yup.string().min(6),
       password: Yup.string()
         .min(6)
@@ -59,13 +69,13 @@ class UserController {
       return res.status(400).json({ error: 'Validation fails' });
     }
 
-    const { email, oldPassword } = req.body;
+    const { login, oldPassword } = req.body;
 
     const user = await User.findByPk(req.userID);
 
-    if (email !== user.email) {
+    if (login !== user.login) {
       const userExists = await User.findOne({
-        where: { email },
+        where: { login },
       });
 
       if (userExists) {
@@ -92,9 +102,19 @@ class UserController {
     return res.json({
       id,
       name,
-      email,
+      login,
       avatar,
     });
+  }
+
+  async delete(req, res) {
+    const users = await User.findByPk(req.params.id);
+
+    users.status = false;
+
+    await users.save();
+
+    return res.json(users);
   }
 }
 
