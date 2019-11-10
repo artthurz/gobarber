@@ -1,39 +1,51 @@
+
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('users', {
+    return queryInterface.createTable('peoples', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
+      users_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'users', key: 'id' },
+        allowNull: true,
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      login: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      password_hash: {
-        type: Sequelize.STRING,
+      birth_date: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
-      admin: {
+      fone: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      cpf: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      rg: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      provider: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false,
-      }, 
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       status: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
-        allowNull: false,
-      },
-      avatar_id: {
-        type: Sequelize.INTEGER,
-        references: { model: 'files', key: 'id' },
-        defaultValue: 1,
         allowNull: false,
       },
       created_at: {
@@ -42,12 +54,12 @@ module.exports = {
       },
       updated_at: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
       },
     });
   },
 
-  down: queryInterface => {
-    return queryInterface.dropTable('users');
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('peoples');
   },
 };

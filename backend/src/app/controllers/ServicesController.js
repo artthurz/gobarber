@@ -3,7 +3,7 @@ import Services from '../models/Services';
 class ServicesController {
   async index(req, res) {
     const services = await Services.findAll({
-      where: { canceled_at: null },
+      where: { status: true },
       attributes: ['id', 'name', 'description', 'price', 'duration', 'active'],
     });
 
@@ -50,7 +50,7 @@ class ServicesController {
   async delete(req, res) {
     const services = await Services.findByPk(req.params.id);
 
-    services.canceled_at = new Date();
+    services.status = false;
 
     await services.save();
 

@@ -10,19 +10,12 @@ module.exports = {
       appointments_id: {
         type: Sequelize.INTEGER,
         references: { model: 'appointments', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
         allowNull: false,
       },
       services_id: {
         type: Sequelize.INTEGER,
         references: { model: 'services', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
         allowNull: false,
-      },
-      canceled_at: {
-        type: Sequelize.DATE,
       },
       created_at: {
         type: Sequelize.DATE,

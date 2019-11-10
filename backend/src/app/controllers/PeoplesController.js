@@ -3,7 +3,7 @@ import Peoples from '../models/Peoples';
 class PeoplesController {
   async index(req, res) {
     const peoples = await Peoples.findAll({
-      where: { canceled_at: null },
+      where: { status: true },
       peoples: ['id', 'name', 'birth_date', 'fone', 'email'],
     });
 
@@ -87,7 +87,7 @@ class PeoplesController {
   async delete(req, res) {
     const peoples = await Peoples.findByPk(req.params.id);
 
-    peoples.canceled_at = new Date();
+    peoples.status = false;
 
     await peoples.save();
 

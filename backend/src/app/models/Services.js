@@ -9,7 +9,7 @@ class Services extends Model {
         price: Sequelize.DOUBLE,
         duration: Sequelize.INTEGER,
         active: Sequelize.BOOLEAN,
-        canceled_at: Sequelize.DATE,
+        status: Sequelize.BOOLEAN,
       },
       {
         sequelize,

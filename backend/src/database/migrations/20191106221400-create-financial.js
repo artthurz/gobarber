@@ -1,49 +1,36 @@
-
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('peoples', {
+    return queryInterface.createTable('financial', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      users_id: {
+      total_value: {
+        type: Sequelize.DOUBLE,
+        allowNull: false,
+      },
+      discount_percentage: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      birth_date: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      fone: {
-        type: Sequelize.STRING,
+      discount_value: {
+        type: Sequelize.DOUBLE,
         allowNull: true,
       },
-      cpf: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      rg: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      provider: {
+      status: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: false,
       },
-      email: {
+      appointments_services_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'appointments_services', key: 'id' },
+        allowNull: false,
+      },
+      observation: {
         type: Sequelize.STRING,
         allowNull: true,
-      },
-      canceled_at: {
-        type: Sequelize.DATE,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -57,6 +44,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('peoples');
+    return queryInterface.dropTable('financial');
   },
 };

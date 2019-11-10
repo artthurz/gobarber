@@ -148,6 +148,10 @@ class AppointmentController {
     return res.json({ appointment, services });
   }
 
+  async update(req, res) {
+
+  }
+
   async delete(req, res) {
     const appointment = await Appointment.findByPk(req.params.id, {
       include: [

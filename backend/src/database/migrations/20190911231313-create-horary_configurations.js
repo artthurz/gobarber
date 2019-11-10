@@ -53,7 +53,7 @@ module.exports = {
       },
       peoples_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'users', key: 'id' },
+        references: { model: 'peoples', key: 'id' },
         allowNull: true,
       },
       created_at: {
