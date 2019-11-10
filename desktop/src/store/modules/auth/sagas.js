@@ -8,16 +8,16 @@ import { signInSuccess, signFailure } from './actions';
 
 export function* signIn({ payload }) {
   try {
-    const { email, password } = payload;
+    const { login, password } = payload;
 
     const response = yield call(api.post, 'sessions', {
-      email,
+      login,
       password,
     });
 
     const { token, user } = response.data;
 
-    if (!user.provider) {
+    if (!user.admin) {
       toast.error('Falha na autenticação, você não é um prestador');
       yield put(signFailure());
       return;
@@ -36,11 +36,11 @@ export function* signIn({ payload }) {
 
 export function* signUp({ payload }) {
   try {
-    const { name, email, password } = payload;
+    const { name, login, password } = payload;
 
     yield call(api.post, 'users', {
       name,
-      email,
+      login,
       password,
       provider: true,
     });

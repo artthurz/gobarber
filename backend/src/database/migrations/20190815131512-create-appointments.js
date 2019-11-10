@@ -13,12 +13,12 @@ module.exports = {
       },
       client_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'peoples', key: 'id' },
+        references: { model: 'users', key: 'id' },
         allowNull: false,
       },
       provider_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'peoples', key: 'id' },
+        references: { model: 'users', key: 'id' },
         allowNull: false,
       },
       canceled_at: {

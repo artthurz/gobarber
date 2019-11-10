@@ -56,7 +56,7 @@ class AppointmentController {
      * Check if provider_id is a provider
      */
     const isProvider = await User.findOne({
-      where: { id: provider_id, provider: true },
+      where: { id: provider_id, admin: true },
     });
 
     if (!isProvider) {
@@ -103,9 +103,9 @@ class AppointmentController {
     }
 
     const appointment = await Appointment.create({
-      user_id: req.userID,
-      provider_id,
       date,
+      client_id: req.userID,
+      provider_id,
     });
 
     const appointments = await Appointment.findAll();
@@ -120,8 +120,6 @@ class AppointmentController {
         services_id: services_id[i],
       };
     }
-
-    console.log(appserv);
 
     const services = await AppointmentsServices.bulkCreate(appserv, {
       returning: true,
@@ -148,9 +146,7 @@ class AppointmentController {
     return res.json({ appointment, services });
   }
 
-  async update(req, res) {
-
-  }
+  async update(req, res) {}
 
   async delete(req, res) {
     const appointment = await Appointment.findByPk(req.params.id, {
@@ -158,7 +154,7 @@ class AppointmentController {
         {
           model: User,
           as: 'provider',
-          attributes: ['name', 'email'],
+          attributes: ['name', 'login'],
         },
         {
           model: User,

@@ -9,9 +9,7 @@ import logo from '~/assets/logo.svg';
 import { signUpRequest } from '~/store/modules/auth/actions';
 
 const schema = Yup.object().shape({
-  email: Yup.string()
-    .email('Insira um e-mail válido')
-    .required('O e-mail é obrigatório'),
+  email: Yup.string().required('O login é obrigatório'),
   password: Yup.string()
     .min(6, 'No mínimo 6 caracteres')
     .required('A senha é obrigatória'),
@@ -22,15 +20,15 @@ export default function SignUp() {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
 
-  function handleSubmit({ name, email, password }) {
-    dispatch(signUpRequest(name, email, password));
+  function handleSubmit({ name, login, password }) {
+    dispatch(signUpRequest(name, login, password));
   }
   return (
     <>
       <img src={logo} alt="GoBarber" />
       <Form schema={schema} onSubmit={handleSubmit}>
         <Input name="name" placeholder="Nome completo" />
-        <Input name="email" type="email" placeholder="Seu e-mail" />
+        <Input name="login" type="login" placeholder="Seu login" />
         <Input
           name="password"
           type="password"
