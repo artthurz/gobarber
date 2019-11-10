@@ -7,6 +7,7 @@ import api from '~/services/api';
 
 export default function Peoples() {
   const [peoples, setPeoples] = useState([]);
+  const [mudou, setMudou] = useState([]);
 
   useEffect(() => {
     async function loadPeoples() {
@@ -15,10 +16,11 @@ export default function Peoples() {
       setPeoples(response.data);
     }
     loadPeoples();
-  }, [peoples]);
+  }, [mudou]);
 
   async function handleSubmit(data) {
     await api.post('configuration/peoples', data);
+    setMudou(Math.random() * 1000);
   }
 
   return (

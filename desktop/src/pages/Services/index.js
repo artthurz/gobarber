@@ -7,6 +7,7 @@ import api from '~/services/api';
 
 export default function Services() {
   const [services, setServices] = useState([]);
+  const [mudou, setMudou] = useState([]);
 
   useEffect(() => {
     async function loadServices() {
@@ -15,10 +16,11 @@ export default function Services() {
       setServices(response.data);
     }
     loadServices();
-  }, [services]);
+  }, [mudou]);
 
   async function handleSubmit(data) {
     await api.post('configuration/services', data);
+    setMudou(Math.random() * 1000);
   }
 
   return (

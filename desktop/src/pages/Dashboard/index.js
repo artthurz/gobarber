@@ -15,7 +15,7 @@ import pt from 'date-fns/locale/pt';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import api from '~/services/api';
 
-import { Container, Time } from './styles';
+import { Container, Time, Hora, Servico } from './styles';
 
 const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
@@ -77,10 +77,24 @@ export default function Dashboard() {
       <ul>
         {schedule.map(time => (
           <Time key={time.time} past={time.past} available={!time.appointment}>
-            <strong>{time.time}</strong>
-            <span>
-              {time.appointment ? time.appointment.user.name : 'Em aberto'}
-            </span>
+            <aside>
+              <Hora>
+                <strong>{time.time}</strong>
+                <span>
+                  {time.appointment ? time.appointment.user.name : 'Em aberto'}
+                </span>
+              </Hora>
+              <Servico>
+                <strong>Serviços</strong>
+                {time.appointment
+                  ? time.appointment.service.map(s => (
+                      <span key={s.service.id}>
+                        {s.service ? s.service.name : ''}
+                      </span>
+                    ))
+                  : ''}
+              </Servico>
+            </aside>
           </Time>
         ))}
       </ul>

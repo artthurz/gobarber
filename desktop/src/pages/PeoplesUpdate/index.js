@@ -16,6 +16,7 @@ import api from '~/services/api';
 export default function PeoplesUpdate() {
   const [peoples, setPeoples] = useState([]);
   const [serv, setServ] = useState([]);
+  const [mudou, setMudou] = useState([]);
 
   useEffect(() => {
     async function loadPeoples() {
@@ -24,14 +25,16 @@ export default function PeoplesUpdate() {
       setPeoples(response.data);
     }
     loadPeoples();
-  }, [peoples]);
+  }, [mudou]);
 
   async function handleSubmit(data) {
     await api.put(`configuration/peoples/${data.id}`, data);
+    setMudou(Math.random() * 1000);
   }
 
   async function handleDelete(id) {
     await api.delete(`configuration/peoples/${id}`);
+    setMudou(Math.random() * 1000);
   }
 
   async function handleSelect(id) {

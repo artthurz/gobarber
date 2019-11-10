@@ -38,14 +38,30 @@ export const Time = styled.li`
   background: #fff;
 
   opacity: ${props => (props.past ? 0.6 : 1)};
+`;
 
+export const Hora = styled.div`
+  margin-right: 70px;
   strong {
     display: block;
     color: ${props => (props.available ? '#999' : '#4169e1')};
     font-size: 20px;
     font-weight: normal;
   }
+  span {
+    display: block;
+    margin-top: 3px;
+    color: ${props => (props.available ? '#999' : '#666')};
+  }
+`;
 
+export const Servico = styled.div`
+  strong {
+    display: block;
+    color: ${props => (props.available ? '#999' : '#4169e1')};
+    font-size: 16px;
+    font-weight: normal;
+  }
   span {
     display: block;
     margin-top: 3px;

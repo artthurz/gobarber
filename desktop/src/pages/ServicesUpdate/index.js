@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { Link } from 'react-router-dom';
+import { randomFill } from 'crypto';
 import {
   Container,
   Service,
@@ -16,6 +17,7 @@ import api from '~/services/api';
 export default function ServicesUpdate() {
   const [services, setServices] = useState([]);
   const [serv, setServ] = useState([]);
+  const [mudou, setMudou] = useState([]);
 
   useEffect(() => {
     async function loadServices() {
@@ -24,10 +26,11 @@ export default function ServicesUpdate() {
       setServices(response.data);
     }
     loadServices();
-  }, [services]);
+  }, [mudou]);
 
   async function handleSubmit(data) {
     await api.put(`configuration/services/${data.id}`, data);
+    setMudou(Math.random() * 1000);
   }
 
   async function handleSelect(id) {
@@ -36,8 +39,9 @@ export default function ServicesUpdate() {
 
   async function handleDelete(id) {
     await api.delete(`configuration/services/${id}`);
+    setMudou(Math.random() * 1000);
   }
-    
+
   async function handleMarkAsActive(id) {
     await api.put(`configuration/services/${id}`, {
       ...serv,
@@ -52,6 +56,7 @@ export default function ServicesUpdate() {
       )
     );
 
+    setMudou(Math.random() * 1000);
     setServ(!serv.active);
   }
 

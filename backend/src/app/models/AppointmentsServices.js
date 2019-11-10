@@ -21,7 +21,7 @@ class AppointmentsServices extends Model {
     });
     this.belongsTo(models.Services, {
       foreignKey: 'services_id',
-      as: 'services',
+      as: 'service',
     });
   }
 }

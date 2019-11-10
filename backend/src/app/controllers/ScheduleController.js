@@ -3,6 +3,8 @@ import { Op } from 'sequelize';
 
 import Appointment from '../models/Appointment';
 import User from '../models/User';
+import AppointmentsServices from '../models/AppointmentsServices';
+import Services from '../models/Services';
 
 class ScheduleController {
   async index(req, res) {
@@ -35,7 +37,57 @@ class ScheduleController {
       order: ['date'],
     });
 
-    return res.json(appointments);
+    const services = await AppointmentsServices.findAll({
+      include: [
+        {
+          model: Services,
+          as: 'service',
+        },
+      ],
+    });
+
+    let service = [];
+    const as = [];
+    let appoin;
+
+    for (let ind = 0; ind < appointments.length; ind++) {
+      service = [];
+      for (let index = 0; index < services.length; index++) {
+        if (services[index].appointments_id === appointments[ind].id) {
+          service[service.length] = services[index];
+        }
+      }
+
+      appoin = appointments[ind];
+      const {
+        past,
+        cancelable,
+        id,
+        date,
+        canceled_at,
+        createdAt,
+        updatedAt,
+        user_id,
+        provider_id,
+        user,
+      } = appoin;
+
+      as[ind] = {
+        past,
+        cancelable,
+        id,
+        date,
+        canceled_at,
+        createdAt,
+        updatedAt,
+        user_id,
+        provider_id,
+        user,
+        service,
+      };
+    }
+
+    return res.json(as);
   }
 }
 
