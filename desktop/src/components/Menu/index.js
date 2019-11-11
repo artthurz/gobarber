@@ -12,9 +12,6 @@ export default function Menu() {
             <Link to="/">Agenda</Link>
           </li>
           <li>
-            <Link to="/appointments">Agendar</Link>
-          </li>
-          <li>
             <Link to="/peoples">Pessoas</Link>
           </li>
           <li>

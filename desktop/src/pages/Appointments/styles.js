@@ -1,65 +1,41 @@
-import styled from 'styled-components';
-import { darken } from 'polished';
-
+import styled, { css } from 'styled-components';
+import { darken, lighten } from 'polished';
+import PerfectScrollBar from 'react-perfect-scrollbar';
 
 export const Container = styled.div`
   max-width: 600px;
   min-width: 600px;
   margin: 30px auto;
 
+  hr {
+    border: 0;
+    height: 1px;
+    width: 600px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 10px 0 20px;
+  }
 
-  strong{
+  strong {
     display: flex;
     color: #fff;
     font-size: 24px;
     justify-content: center;
     margin-right: 25%;
     margin-left: 31%;
+    margin-bottom: 30px;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+    margin-top: 30px;
+  }
+`;
 
-    aside{
-     span {
-       margin: 15px;
-       color: rgba(255, 255, 255, 0.7);
-       font-size: 14px;
-       }
-    }
-
-    input {
-      background: rgba(0, 0, 0, 0.1);
-      border: 0;
-      border-radius: 4px;
+export const BtnSalvar = styled.button`
       height: 36px;
-      padding: 0 15px;
-      padding: 0 15px;
-      color: #fff;
-      margin: 0 0 10px;
-
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
-      }
-    }
-
-    span {
-      color: #e14169;
-      align-self: flex-start;
-      margin: 0 0 10px;
-      font-weight: bold;
-    }
-
-    hr {
-      border: 0;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.2);
-      margin: 10px 0 20px;
-    }
-
-    button {
+      width: 600px;
       margin: 5px 0 0;
       height: 36px;
       /*background: #e1b941;*/
@@ -76,26 +52,12 @@ export const Container = styled.div`
         /*background: ${darken(0.08, '#e1b941')};*/
         background: ${darken(0.08, '#3b9eff')};
       }
-    }
+`;
 
-    a {
-      color: #fff;
-      margin-top: 15px;
-      font-size: 16px;
-      opacity: 0.8;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-  }
-
-  ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 15px;
-    margin-top: 30px;
-  }
+export const ContServ = styled.div`
+  max-width: 600px;
+  min-width: 600px;
+  margin-left: 23%;
 `;
 
 export const Service = styled.div`
@@ -151,72 +113,6 @@ export const Price = styled.div`
   }
 `;
 
-export const Slide = styled.div`
-    display: flex;
-    align-self: center;
-    align-items: center;
-
-    span {
-      display: flex;
-      color: #fff;
-      min-width: 65px;
-      margin: 10px;
-    }
-
-    label {
-      margin-left: 20px;
-    }
-
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-      outline: none;
-    }
-    .switch input {
-      position: absolute;
-      top: -99999px;
-      left: -99999px;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      -webkit-transition: 0.4s;
-      transition: 0.4s;
-      border-radius: 34px;
-    }
-    .slider:before {
-      position: absolute;
-      content: '';
-      height: 26px;
-      width: 26px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      -webkit-transition: 0.4s;
-      transition: 0.4s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background-color: #69e141;
-    }
-    input:focus + .slider {
-      box-shadow: 0 0 1px #69e141;
-    }
-    input:checked + .slider:before {
-      -webkit-transform: translateX(26px);
-      -ms-transform: translateX(26px);
-      transform: translateX(26px);
-    }
-  }
-`;
-
 export const BtnEditar = styled.button`
   margin: 5px 0 0;
   height: 36px;
@@ -258,4 +154,141 @@ export const BtnDeletar = styled.button`
 export const Buttons = styled.div`
   margin-top: 5%;
   margin-left: 5%;
+`;
+
+export const AsideHeader = styled.aside``;
+
+export const Calendar = styled.div`
+  margin-left: 150px;
+`;
+
+export const Entradas = styled.div`
+  margin-top: 30px;
+  span {
+    background: rgba(0, 0, 0, 0.1);
+    border: 0;
+    border-radius: 4px;
+    height: 36px;
+    width: 260px;
+    padding: 0 15px;
+    padding: 0 15px;
+    color: #fff;
+    margin: 0 0 10px;
+  }
+`;
+
+export const Badge = styled.button`
+  margin-bottom: 0;
+  margin-top: 0;
+  margin-left: 10px;
+  background: white;
+  border: 0;
+  position: relative;
+  border-radius: 4px;
+  height: 36px;
+  width: 36px;
+
+  ${props =>
+    props.hasUnread &&
+    css`
+      &::after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 8px;
+        height: 8px;
+        background: #ff892e;
+        content: '';
+        border-radius: 50%;
+      }
+    `}
+`;
+
+export const NotificationList = styled.div`
+  margin-left: 20px;
+  margin-top: 30px;
+  margin-bottom: 0;
+  width: 260px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 15px 5px;
+  display: ${props => (props.visible ? 'block' : 'none')};
+
+  hr {
+    border: 0;
+    height: 1px;
+    width: 200px;
+    background: rgba(0, 0, 0, 0.2);
+    margin-top: 2px;
+  }
+
+  strong {
+    color: #3b9eff;
+    font-size: 18px;
+    margin-bottom: 0;
+    margin-left: 50px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: calc(50% - 20px);
+    top: -20px;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #fff;
+  }
+`;
+
+export const Scroll = styled(PerfectScrollBar)`
+  max-height: 200px;
+  padding: 5px 15px;
+`;
+
+export const Notification = styled.div`
+  color: #3b9eff;
+
+  & + div {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+
+  aside {
+    margin-left: 0;
+    float: right;
+
+    p {
+      width: 165px;
+    }
+
+    button {
+      font-size: 12px;
+      border: 0;
+      background: none;
+      color: ${lighten(0.2, '#4169e1')};
+    }
+  }
+
+  ${props =>
+    props.unread &&
+    css`
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #ff892e;
+        border-radius: 50%;
+        margin-left: 10px;
+      }
+    `}
 `;
