@@ -12,6 +12,7 @@ import Services from '~/pages/Services';
 import ServicesUpdate from '~/pages/ServicesUpdate';
 import Peoples from '~/pages/Peoples';
 import PeoplesUpdate from '~/pages/PeoplesUpdate';
+import Appointments from '~/pages/Appointments';
 
 
 export default function Routes() {
@@ -27,6 +28,7 @@ export default function Routes() {
       <Route path="/services" component={ServicesUpdate} isPrivate />
       <Route path="/peoplescreate" component={Peoples} isPrivate />
       <Route path="/peoples" component={PeoplesUpdate} isPrivate />
+      <Route path="/appointments" component={Appointments} isPrivate />
     </Switch>
   );
 }

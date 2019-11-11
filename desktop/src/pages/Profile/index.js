@@ -27,7 +27,7 @@ export default function Profile() {
         <AvatarInput name="avatar_id" />
 
         <Input name="name" placeholder="Nome completo" />
-        <Input name="email" type="email" placeholder="Seu endereço de email" />
+        <Input name="login" type="login" placeholder="Seu login" />
 
         <hr />
 

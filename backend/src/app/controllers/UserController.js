@@ -3,7 +3,6 @@ import User from '../models/User';
 import File from '../models/File';
 
 class UserController {
-
   async index(req, res) {
     const users = await User.findAll({
       where: { status: true },
@@ -13,12 +12,10 @@ class UserController {
     return res.json(users);
   }
 
-
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
-      login: Yup.string()
-        .required(),
+      login: Yup.string().required(),
       password: Yup.string()
         .required()
         .min(6),
@@ -51,9 +48,13 @@ class UserController {
   }
 
   async update(req, res) {
+    console.log('#!@#@!#!@#@!#@!#!@#@!%!%$@%!¨%$&#&#$%$#@@###!#3');
+    console.log(req.body);
+    console.log('#!@#@!#!@#@!#@!#!@#@!%!%$@%!¨%$&#&#$%$#@@###!#3');
+
     const schema = Yup.object().shape({
       name: Yup.string(),
-      login: Yup.string(),
+      login: Yup.string().min(6),
       oldPassword: Yup.string().min(6),
       password: Yup.string()
         .min(6)

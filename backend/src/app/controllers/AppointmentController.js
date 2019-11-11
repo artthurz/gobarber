@@ -41,6 +41,7 @@ class AppointmentController {
 
   async store(req, res) {
     const schema = Yup.object().shape({
+      client_id: Yup.number().required(),
       provider_id: Yup.number().required(),
       date: Yup.date().required(),
       services_id: Yup.array().required(),
@@ -50,7 +51,7 @@ class AppointmentController {
       return res.status(400).json({ error: 'Validation fails' });
     }
 
-    const { provider_id, date, services_id } = req.body;
+    const { client_id, provider_id, date, services_id } = req.body;
 
     /**
      * Check if provider_id is a provider
@@ -63,16 +64,6 @@ class AppointmentController {
       return res
         .status(401)
         .json({ error: 'You can only create appointments with providers' });
-    }
-
-    /**
-     * Providers can't shadule appointment with themselves
-     */
-
-    if (req.userID === provider_id) {
-      return res.status(400).json({
-        error: 'Providers can not shadule appointments with themselves',
-      });
     }
 
     /**
@@ -104,7 +95,7 @@ class AppointmentController {
 
     const appointment = await Appointment.create({
       date,
-      client_id: req.userID,
+      client_id,
       provider_id,
     });
 
