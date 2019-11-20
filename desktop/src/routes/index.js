@@ -12,6 +12,10 @@ import Services from '~/pages/Services';
 import ServicesUpdate from '~/pages/ServicesUpdate';
 import Peoples from '~/pages/Peoples';
 import PeoplesUpdate from '~/pages/PeoplesUpdate';
+import Users from '~/pages/Users';
+import UsersUpdate from '~/pages/UsersUpdate';
+import Financials from '~/pages/Financials';
+import FinancialsUpdate from '~/pages/FinancialsUpdate';
 import Appointments from '~/pages/Appointments';
 
 
@@ -28,6 +32,10 @@ export default function Routes() {
       <Route path="/services" component={ServicesUpdate} isPrivate />
       <Route path="/peoplescreate" component={Peoples} isPrivate />
       <Route path="/peoples" component={PeoplesUpdate} isPrivate />
+      <Route path="/userscreate" component={Users} isPrivate />
+      <Route path="/users" component={UsersUpdate} isPrivate />
+      <Route path="/financialscreate" component={Financials} isPrivate />
+      <Route path="/financials" component={FinancialsUpdate} isPrivate />
       <Route path="/appointments" component={Appointments} isPrivate />
     </Switch>
   );

@@ -12,6 +12,9 @@ export default function Menu() {
             <Link to="/">Agenda</Link>
           </li>
           <li>
+            <Link to="/financials">Finanças</Link>
+          </li>
+          <li>
             <Link to="/peoples">Pessoas</Link>
           </li>
           <li>
@@ -19,6 +22,9 @@ export default function Menu() {
           </li>
           <li>
             <Link to="/configuration">Configurações</Link>
+          </li>
+          <li>
+            <Link to="/users">Usuários</Link>
           </li>
         </ul>
       </nav>
