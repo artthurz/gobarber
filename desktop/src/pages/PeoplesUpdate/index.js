@@ -1,3 +1,4 @@
+// LISTA + ESDITA
 import React, { useState, useEffect } from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { Link } from 'react-router-dom';
@@ -44,7 +45,7 @@ export default function PeoplesUpdate() {
   return (
     <Container>
       <aside>
-        <strong>Editar Pessoas</strong>
+        <strong>Pessoas</strong>
         <button>
           <Link to="/peoplescreate">Cadastrar</Link>
         </button>

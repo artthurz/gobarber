@@ -1,3 +1,4 @@
+import * as Yup from 'yup';
 import Peoples from '../models/Peoples';
 
 class PeoplesController {
@@ -11,6 +12,17 @@ class PeoplesController {
   }
 
   async store(req, res) {
+
+    // OBRIGATÓRIOS
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      birth_date: Yup.string().required(),
+      provider: Yup.boolean().required(),
+    });
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation fails' });
+    }
+        
     const {
       users_id,
       name,

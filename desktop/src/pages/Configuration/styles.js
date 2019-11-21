@@ -12,13 +12,33 @@ export const Container = styled.div`
     justify-content: center;
     margin: 0 15px;
   }
+  
+  input {
+    background: rgba(0, 0, 0, 0.1);
+    border: 0;
+    border-radius: 4px;
+    height: 36px;
+    padding: 0 15px;
+    padding: 0 15px;
+    color: #fff;
+    margin: 0 0 10px;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
 
   form {
     display: flex;
     margin-top: 20px;
     flex-direction: column;
 
-
+    span {
+      color: #e14169;
+      align-self: flex-start;
+      margin: 0 0 10px;
+      font-weight: bold;
+    }
 
     div {
       display: flex;
@@ -88,6 +108,8 @@ export const Container = styled.div`
     }
   }
 
+
+
   button {
       margin: 5px 0 0;
       height: 36px;
@@ -112,4 +134,5 @@ export const Container = styled.div`
       background: rgba(255, 255, 255, 0.2);
       margin: 10px 0 20px;
     }
+  
 `;

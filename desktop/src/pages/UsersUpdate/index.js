@@ -40,7 +40,7 @@ export default function UsersUpdate() {
   return (
     <Container>
       <aside>
-        <strong>Editar Usuários</strong>
+        <strong>Usuários</strong>
         <button>
           <Link to="/userscreate">Cadastrar</Link>
         </button>

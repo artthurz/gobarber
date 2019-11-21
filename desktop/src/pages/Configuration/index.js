@@ -1,8 +1,26 @@
 import React from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { Container } from './styles';
+import * as Yup from 'yup';
 
-export default function Profile() {
+const schema = Yup.object().shape({
+
+  morning_start: Yup.string().required('Horário abertura manhã é obrigatório'),
+  morning_end: Yup.string().required('Horário fechamento manhã é obrigatório'),
+  afternoon_start: Yup.string().required('Horário abertura tarde é obrigatório'),
+  afternoon_end: Yup.string().required('Horário fechamento tarde é obrigatório'),
+  sunday: Yup.string().required('Domingo é obrigatório'),
+  monday: Yup.string().required('Segunda é obrigatório'),
+  tuesday: Yup.string().required('Terça é obrigatório'),
+  wednesday: Yup.string().required('Quarta é obrigatório'),
+  thursday: Yup.string().required('Quinta é obrigatório'),
+  friday: Yup.string().required('Sexta é obrigatório'),
+  saturday: Yup.string().required('Sábado é obrigatório'),
+
+});
+
+
+export default function Configuration() {
   function handleSubmit() {
     return null;
   }
@@ -10,7 +28,15 @@ export default function Profile() {
   return (
     <Container>
       <strong>Dias de funcionamento</strong>
-      <Form onSubmit={handleSubmit}>
+
+      <Form schema={schema} onSubmit={handleSubmit}>
+        
+        <Input name="morning_start" placeholder="Horário abertura manhã" />
+        <Input name="morning_end" placeholder="Horário fechamento manhã" />
+        <Input name="afternoon_start" placeholder="Horário abertura tarde" />
+        <Input name="afternoon_end" placeholder="Horário fechamento tarde" />
+          
+        <hr />
         <div>
           <span>Domingo</span>
           <label className="switch">
@@ -68,6 +94,7 @@ export default function Profile() {
         </div>
 
         <hr />
+
 
         <button type="submit">Atualizar Dias de Funcionamento</button>
       </Form>

@@ -63,7 +63,7 @@ export default function ServicesUpdate() {
   return (
     <Container>
       <aside>
-        <strong>Editar Serviços</strong>
+        <strong>Serviços</strong>
         <button>
           <Link to="/servicescreate">Cadastrar</Link>
         </button>
