@@ -23,6 +23,8 @@ const upload = multer(multerConfig);
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
+routes.post('/appointments-financeiro/:appointment_id', AppointmentController.geraFinanceiro);
+
 routes.use(authMiddleware);
 
 routes.get('/users', UserController.index);
@@ -50,6 +52,10 @@ routes.get('/appointments', AppointmentController.index);
 routes.post('/appointments', AppointmentController.store);
 routes.put('/appointments/:id', AppointmentController.update);
 routes.delete('/appointments/:id', AppointmentController.delete);
+
+
+
+
 
 routes.get('/financial', FinancialController.index);
 routes.post('/financial', FinancialController.store);

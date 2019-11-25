@@ -1,49 +1,21 @@
-import * as Yup from 'yup';
-import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
-import pt from 'date-fns/locale/pt-BR';
 import User from '../models/User';
-import File from '../models/File';
+import Financial from '../models/Financial';
 import Appointment from '../models/Appointment';
-import Notification from '../schemas/Notification';
 import AppointmentsServices from '../models/AppointmentsServices';
 import Services from '../models/Services';
-import Financial from '../models/Financial';
 
-
-import CancellationMail from '../jobs/CancellationMail';
 import Queue from '../../lib/Queue';
-import Peoples from '../models/Peoples';
 
-class AppointmentController {
-  async index(req, res) {
-    const { page = 1 } = req.query;
+class ManagerController {
 
-    const appointments = await Appointment.findAll({
-      where: { user_id: req.userID, canceled_at: null },
-      order: ['date'],
-      attributes: ['id', 'date', 'past', 'cancelable'],
-      limit: 20,
-      offset: (page - 1) * 20,
-      include: [
-        {
-          model: User,
-          as: 'provider',
-          attributes: ['id', 'name'],
-          include: [
-            {
-              model: File,
-              as: 'avatar',
-              attributes: ['id', 'path', 'url'],
-            },
-          ],
-        },
-      ],
-    });
+  async geraFinanceiro() {
 
+
+    
     return res.json(appointments);
   }
 
-  async store(req, res) {
+  async calcu(req, res) {
     const schema = Yup.object().shape({
       client_id: Yup.number().required(),
       provider_id: Yup.number().required(),
@@ -183,72 +155,6 @@ class AppointmentController {
 
     return res.json(appointment);
   }
-
-  async geraFinanceiro(req, res) {
-
-    var totalValor = 0;
-
-    const appointment = await Appointment.findByPk(req.params.appointment_id);
-    const people = await Peoples.findByPk(appointment.client_id);
-    const appointment_services = await AppointmentsServices.findAll({ where: {appointments_id: appointment.id}} );
-
-    const count = await AppointmentsServices.findAndCountAll({ where: {appointments_id: appointment.id}} );
-    
-    for (let i = 0; i < count.count; i++) {
-      const item = appointment_services[i];
-      
-      const service = await Services.findOne({ where: {id: item.services_id}} );
-            
-      var appointments_services_id = item.id;
-      var total_value = service.price;
-      var status = false;
-      var observation = "Serviço: "+service.name+" Cliente: "+people.name;  
-      
-      var fin = [];
-      fin[i] = {appointments_services_id,
-        total_value,
-        status,
-        observation};      
-    }
-    console.log("AQUI AQUI AQUI AQUI AQUI");
-    console.log(fin);
-    console.log("AQUI AQUI AQUI AQUI AQUI");
-    const financials = await Financial.create(fin);
-
-    return res.json(financials);
-  }
-
-  async calculaTempo(appointment_id) {
-
-    
-
-
-    
-    return res.json(appointments);
-  }
-
-  async calculaValor(appointment_id) {
-    
-    var totalValor = 0;
-
-    const appointment = await Appointment.findByPk(req.params.appointment_id);
-    const appointment_services = await AppointmentsServices.findAll({ where: {appointments_id: appointment.id}} );
-    
-    async function somar(item) {
-      const service = await Services.findOne({ where: {id: item.services_id}} );
-      var valor = service.price;
-
-      totalValor += valor;
-
-      console.log(totalValor);
-    }
-    
-    appointment_services.forEach(somar);
-
-    return res.json(totalValor);
-
-  }
-
 }
 
 export default new AppointmentController();

@@ -17,6 +17,7 @@ class FinancialController {
       discount_percentage,
       discount_value,
       observation,
+      status,
       created_at,
       updated_at,
     } = req.body;
@@ -27,6 +28,7 @@ class FinancialController {
       discount_percentage,
       discount_value,
       observation,
+      status,
       created_at,
       updated_at,
     });
