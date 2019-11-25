@@ -80,7 +80,7 @@ export default function Dashboard() {
         <SideMenu>
           <grid>
             <NewAppointment>
-              <button>
+              <button type="button">
                 <Link to="/appointments">Novo Agendamento</Link>
               </button>
             </NewAppointment>

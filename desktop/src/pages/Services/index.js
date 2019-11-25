@@ -1,5 +1,6 @@
 // NOVO
 import React, { useState, useEffect } from 'react';
+import InputMask from 'react-input-mask';
 import { Form, Input } from '@rocketseat/unform';
 import { Link } from 'react-router-dom';
 import { Container, Service, Price, Slide } from './styles';

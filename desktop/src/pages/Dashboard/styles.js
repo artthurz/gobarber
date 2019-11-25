@@ -37,12 +37,14 @@ export const SideMenu = styled.div`
 
 export const Calendar = styled.div`
   button {
-    border: 0;
     background: none;
   }
 `;
 
 export const BtnsNextPrev = styled.div`
+  button {
+    border: 0;
+  }
   margin-left: 35%;
 `;
 
