@@ -64,35 +64,29 @@ export default function FinancialssUpdate() {
     <Container>
       <aside>
         <strong>Finanças</strong>
-        <button>
-          <Link to="/financialscreate">Cadastrar</Link>
-        </button>
+        {/* <button> */}
+          {/* <Link to="/financialscreate">Cadastrar</Link> */}
+        {/* </button>  */}
       </aside>
-      <Form initialData={serv} onSubmit={handleSubmit}>
-        <Input name="id" placeholder="ID" disabled />
-        <Input name="name" placeholder="Título" />
-        <Input name="description" placeholder="Descrição" />
-        <Input name="price" placeholder="Preço" />
-        <Input name="duration" placeholder="Duração" />
-        <aside>
-          <span>Ativo: </span>
-          <Slide>
-            <label className="switch">
-              <Input
-                name="active"
-                type="checkbox"
-                placeholder="active"
-                checked={serv.active}
-                onClick={() => handleMarkAsActive(serv.id)}
-              />
-              <div className="slider" />
-            </label>
-          </Slide>
-        </aside>
-        <hr />
-        <button type="submit">Salvar</button>
-      </Form>
-      <strong>Finanças</strong>
+      {/* <Form initialData={serv} onSubmit={handleSubmit}> */}
+        {/* <Input name="id" placeholder="ID" disabled /> */}
+        {/* <Input name="name" placeholder="Título" /> */}
+        {/* <Input name="description" placeholder="Descrição" /> */}
+        {/* <Input name="price" placeholder="Preço" /> */}
+        {/* <Input name="duration" placeholder="Duração" /> */}
+        {/* <aside> */}
+          {/* <span>Ativo: </span> */}
+          {/* <Slide> */}
+            {/* <label className="switch"> */}
+              {/* <Input name="active" type="checkbox" placeholder="active" checked={serv.active} onClick={() => handleMarkAsActive(serv.id)} /> */}
+              {/* <div className="slider" /> */}
+            {/* </label> */}
+          {/* </Slide> */}
+        {/* </aside> */}
+        {/* <hr /> */}
+        {/* <button type="submit">Salvar</button> */}
+      {/* </Form> */}
+      {/* <strong>Finanças</strong> */}
       <ul>
         {financials.map(financial => (
           <Financial key={financial.name}>

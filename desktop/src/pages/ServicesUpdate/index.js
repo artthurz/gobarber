@@ -70,12 +70,12 @@ export default function ServicesUpdate() {
       </aside>
       <Form initialData={serv} onSubmit={handleSubmit}>
         <Input name="id" placeholder="ID" disabled />
-        <Input name="name" placeholder="Título" />
+        <Input name="name" placeholder="* Título" />
         <Input name="description" placeholder="Descrição" />
-        <Input name="price" placeholder="Preço" />
-        <Input name="duration" placeholder="Duração" />
+        <Input name="price" placeholder="* Preço" />
+        <Input name="duration" placeholder="* Duração" />
         <aside>
-          <span>Ativo: </span>
+          <span>* Ativo: </span>
           <Slide>
             <label className="switch">
               <Input

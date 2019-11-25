@@ -77,7 +77,7 @@ export default function PeoplesUpdate() {
       <SelectDiv>
         <Select
           options={people}
-          placeholder="Selecione a Pessoa"
+          placeholder="Selecione a Pessoa para editar"
           onChange={handleSelect}
         />
       </SelectDiv>
