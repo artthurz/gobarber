@@ -1,55 +1,81 @@
 // NOVO
-import React, { useState, useEffect } from 'react';
-import { Form, Input } from '@rocketseat/unform';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, User } from './styles';
-import * as Yup from 'yup';
+import { toast } from 'react-toastify';
+import { Container, ButtonSave, ButtonBack, Slide, DivForm } from './styles';
 
 import api from '~/services/api';
 
-const schema = Yup.object().shape({
-  name: Yup.string().required('O Nome é obrigatório'),
-  login: Yup.string().required('O Login é obrigatório'),
-  password: Yup.string().required('A senha é obrigatória'),
-  admin: Yup.string().required('Administrador? é obrigatório'),
-  status: Yup.string().required('Status? é obrigatório'),
-});
+export default function Peoples() {
+  const [name, setName] = useState();
+  const [login, setLogin] = useState();
+  const [password, setPassword] = useState();
+  const [admin, setAdmin] = useState();
 
-export default function Users() {
-  const [users, setUsers] = useState([]);
+  async function handleSubmit() {
+    if (name == null || undefined || (login == null || undefined)) {
+      toast.error(
+        'Falha ao realizar o cadastro, prencha os campos obrigatórios! ( * )'
+      );
 
-  useEffect(() => {
-    async function loadUsers() {
-      const response = await api.get('users');
-
-      // setPeoples(response.data);
+      return;
     }
-    loadUsers();
-  }, [users]);
 
-  async function handleSubmit(data) {
+    let data = { name, login };
+
+    if (!(password == null || undefined)) {
+      data = { ...data, password };
+    }
+    if (!(admin == null || undefined)) {
+      data = { ...data, admin };
+    }
+
     await api.post('users', data);
+    toast.success('Cadastro realizado com sucesso');
   }
 
   return (
     <Container>
       <aside>
-        <strong>Novo Usuário</strong>
-        <button>
+        <strong>Cadastrar nova pessoa</strong>
+        <ButtonBack>
           <Link to="/users">Voltar</Link>
-        </button>
+        </ButtonBack>
       </aside>
-      <Form schema={schema} initialData={null} onSubmit={handleSubmit}>
-        <Input name="name" placeholder="Nome" />
-        <Input name="login" placeholder="Login" />
-        <Input name="password" placeholder="Senha" />
-        <Input name="admin" placeholder="Administrador?" />
-        <Input name="status" placeholder="Status?" />
-        <hr />
-        <button type="submit">
-          <Link to="/users">Salvar</Link>
-        </button>
-      </Form>
+      <DivForm>
+        <input
+          name="name"
+          placeholder="* Nome"
+          onChange={e => setName(e.target.value)}
+        />
+        <input
+          name="login"
+          placeholder="* Login"
+          onChange={e => setLogin(e.target.value)}
+        />
+        <input
+          name="password"
+          placeholder="Senha"
+          onChange={e => setPassword(e.target.value)}
+        />
+      </DivForm>
+      <Slide>
+        <aside>
+          <span>Administrador: </span>
+          <div>
+            <input
+              type="checkbox"
+              name="admin"
+              placeholder="Checkbox"
+              onChange={e => setAdmin(e.target.checked)}
+            />
+          </div>
+        </aside>
+      </Slide>
+      <hr />
+      <ButtonSave type="button" onClick={handleSubmit}>
+        Salvar
+      </ButtonSave>
     </Container>
   );
 }

@@ -1,6 +1,10 @@
 // NOVO
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import MaskedInput from 'react-text-mask';
+import DatePicker from 'react-datepicker';
+import { toast } from 'react-toastify';
+import Select from 'react-select';
 import {
   Container,
   ButtonSave,
@@ -9,10 +13,6 @@ import {
   DivForm,
   SelectDiv,
 } from './styles';
-import MaskedInput from 'react-text-mask';
-import DatePicker from 'react-datepicker';
-import { toast } from 'react-toastify';
-import Select from 'react-select';
 
 import api from '~/services/api';
 
@@ -31,7 +31,7 @@ export default function Peoples() {
   useEffect(() => {
     async function loadclients() {
       const response = await api.get('users');
-      let elements = [];
+      const elements = [];
 
       for (const { id, name } of response.data) {
         elements.push({

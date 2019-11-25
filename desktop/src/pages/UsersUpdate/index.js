@@ -48,8 +48,6 @@ export default function UsersUpdate() {
       <Form initialData={serv} onSubmit={handleSubmit}>
         <Input name="id" placeholder="ID" disabled />
         <Input name="name" placeholder="Nome" />
-        <Input name="birth_date" placeholder="Aniversário" />
-        <Input name="fone" placeholder="Telefone" />
         <Input name="email" placeholder="Email" />
         <hr />
         <button type="submit">Salvar</button>
@@ -60,20 +58,7 @@ export default function UsersUpdate() {
           <User key={user.name}>
             <div>
               <strong>{user.name}</strong>
-              <span>{user.description}</span>
             </div>
-            <Price>
-              <aside>
-                <div>
-                  <strong>Aniversário: </strong>
-                </div>
-                <span>{user.birth_date}</span>
-              </aside>
-            </Price>
-            <aside>
-              <strong>Telefone: </strong>
-              <span>{user.fone} minutos</span>
-            </aside>
             <Buttons>
               <BtnEditar type="button" onClick={() => handleSelect(user.id)}>
                 Editar
