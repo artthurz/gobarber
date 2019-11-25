@@ -12,7 +12,7 @@ export const Container = styled.div`
     font-size: 24px;
     justify-content: center;
     margin-right: 14%;
-    margin-left: 31%;
+    margin-left: 28%;
   }
 
   hr {

@@ -64,15 +64,36 @@ export default function Peoples() {
 
       return;
     }
-    const data = { name, birth_date, email, fone, cpf, rg, provider, users_id };
+
+    let data = { name, birth_date };
+
+    if (!(email == null || undefined)) {
+      data = { ...data, email };
+    }
+    if (!(fone == null || undefined)) {
+      data = { ...data, fone };
+    }
+    if (!(cpf == null || undefined)) {
+      data = { ...data, cpf };
+    }
+    if (!(rg == null || undefined)) {
+      data = { ...data, rg };
+    }
+    if (!(provider == null || undefined)) {
+      data = { ...data, provider };
+    }
+    if (!(users_id == null || undefined)) {
+      data = { ...data, users_id };
+    }
+
     await api.post('configuration/peoples', data);
-    toast.success('Castro realizado com sucesso');
+    toast.success('Cadastro realizado com sucesso');
   }
 
   return (
     <Container>
       <aside>
-        <strong>Nova Pessoa</strong>
+        <strong>Cadastrar nova pessoa</strong>
         <ButtonBack>
           <Link to="/peoples">Voltar</Link>
         </ButtonBack>
@@ -88,7 +109,7 @@ export default function Peoples() {
           <DatePicker
             selected={birth_date}
             onChange={date => setBirth_date(date)}
-            dateFormat="d/MM/y"
+            dateFormat="dd/MM/y"
             placeholder="Data de Nascimento"
           />
         </aside>

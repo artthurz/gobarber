@@ -13,7 +13,7 @@ module.exports = {
       },
       client_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'users', key: 'id' },
+        references: { model: 'peoples', key: 'id' },
         allowNull: false,
       },
       provider_id: {

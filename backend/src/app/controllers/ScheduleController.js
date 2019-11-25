@@ -3,6 +3,7 @@ import { Op } from 'sequelize';
 
 import Appointment from '../models/Appointment';
 import User from '../models/User';
+import Peoples from '../models/Peoples';
 import AppointmentsServices from '../models/AppointmentsServices';
 import Services from '../models/Services';
 
@@ -29,7 +30,7 @@ class ScheduleController {
       },
       include: [
         {
-          model: User,
+          model: Peoples,
           as: 'user',
           atributes: ['name'],
         },

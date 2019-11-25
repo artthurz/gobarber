@@ -53,10 +53,10 @@ export default function Services() {
 
   useEffect(() => {
     async function loadclients() {
-      const response = await api.get('users');
+      const response = await api.get('configuration/peoples');
       let data = [];
       for (let index = 0; index < response.data.length; index++) {
-        if (response.data[index].admin === false) {
+        if (response.data[index].provider === false) {
           data.push(response.data[index]);
         }
       }
@@ -118,6 +118,8 @@ export default function Services() {
         return;
       }
     }
+
+    console.log(appointment);
     await api.post('appointments', appointment);
     toast.success('Agendamento realizado com sucesso');
     setServices_id();

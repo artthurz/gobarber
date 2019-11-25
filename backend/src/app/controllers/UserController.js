@@ -48,10 +48,6 @@ class UserController {
   }
 
   async update(req, res) {
-    console.log('#!@#@!#!@#@!#@!#!@#@!%!%$@%!¨%$&#&#$%$#@@###!#3');
-    console.log(req.body);
-    console.log('#!@#@!#!@#@!#@!#!@#@!%!%$@%!¨%$&#&#$%$#@@###!#3');
-
     const schema = Yup.object().shape({
       name: Yup.string(),
       login: Yup.string().min(6),
