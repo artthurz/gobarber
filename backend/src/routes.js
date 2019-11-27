@@ -14,6 +14,7 @@ import HoraryController from './app/controllers/HoraryController';
 import ServicesController from './app/controllers/ServicesController';
 import PeoplesController from './app/controllers/PeoplesController';
 import FinancialController from './app/controllers/FinancialController';
+import AuditController from './app/controllers/AuditController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -25,6 +26,9 @@ routes.post('/sessions', SessionController.store);
 
 routes.post('/appointments-financeiro/:appointment_id', AppointmentController.geraFinanceiro);
 
+routes.get('/audit', AuditController.index);
+routes.post('/audit', AuditController.store);
+
 routes.use(authMiddleware);
 
 routes.get('/users', UserController.index);
@@ -33,6 +37,11 @@ routes.put('/users/:id', UserController.update);
 routes.delete('/users/:id', UserController.delete);
 
 routes.post('/files', upload.single('file'), FileController.store);
+
+routes.get('/financial', FinancialController.index);
+routes.post('/financial', FinancialController.store);
+routes.put('/financial/:id', FinancialController.update);
+routes.delete('/financial/:id', FinancialController.delete);
 
 routes.get('/configuration/peoples', PeoplesController.index);
 routes.post('/configuration/peoples', PeoplesController.store);
@@ -57,10 +66,6 @@ routes.delete('/appointments/:id', AppointmentController.delete);
 
 
 
-routes.get('/financial', FinancialController.index);
-routes.post('/financial', FinancialController.store);
-routes.put('/financial/:id', FinancialController.update);
-routes.delete('/financial/:id', FinancialController.delete);
 
 // 
 routes.get('/schedule', ScheduleController.index);

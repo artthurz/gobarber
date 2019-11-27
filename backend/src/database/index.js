@@ -10,15 +10,19 @@ import Peoples from '../app/models/Peoples';
 import AppointmentsServices from '../app/models/AppointmentsServices';
 
 import databaseConfig from '../config/database';
+import Financial from '../app/models/Financial';
+import Audit from '../app/models/Audit';
 
 const models = [
-  User,
-  File,
   Appointment,
-  HoraryConfiguration,
-  Services,
-  Peoples,
   AppointmentsServices,
+  Audit,
+  File,
+  Financial,
+  HoraryConfiguration,
+  Peoples,
+  Services,
+  User
 ];
 
 class Database {

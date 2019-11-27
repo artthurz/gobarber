@@ -1,37 +1,33 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('financial', {
+    return queryInterface.createTable('audit', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      total_value: {
-        type: Sequelize.DOUBLE,
+      date_action: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
-      discount_percentage: {
+      operation: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      table_action: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      text_action: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      user_id: {
         type: Sequelize.INTEGER,
-        allowNull: true,
-      },
-      discount_value: {
-        type: Sequelize.DOUBLE,
-        allowNull: true,
-      },
-      status: {
-        type: Sequelize.BOOLEAN,
+        references: { model: 'users', key: 'id' },
         allowNull: false,
-      },
-      appointments_id: {
-        type: Sequelize.INTEGER,
-        references: { model: 'appointments', key: 'id' },
-        allowNull: false,
-      },
-      observation: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
+      },      
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -40,10 +36,11 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true,
       },
+
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('financial');
+    return queryInterface.dropTable('audit');
   },
 };

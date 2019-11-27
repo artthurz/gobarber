@@ -19,7 +19,11 @@ class Financial extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.AppointmentsServices, { foreignKey: 'appointments_services_id', as: 'appointments_services' });
+    this.belongsTo(models.Appointment, {
+      foreignKey: 'appointments_id',
+      as: 'appointment',
+    });
+    
   }
 }
 

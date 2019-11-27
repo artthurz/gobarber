@@ -25,6 +25,11 @@ module.exports = {
         defaultValue: false,
         allowNull: false,
       }, 
+      secretary: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false,
+      }, 
       status: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,

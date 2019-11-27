@@ -1,10 +1,20 @@
 import Financial from '../models/Financial';
 
 class FinancialController {
+  
   async index(req, res) {
     const financial = await Financial.findAll({
       where: { status: true },
-      financial: ['id', 'appointments_services_id', 'total_value', 'discount_percentage', 'discount_value', 'observation'],
+      attributes: ['id', 
+                    'appointments_id',
+                    'total_value',
+                    'discount_percentage',
+                    'discount_value',
+                    'observation',
+                    'status',
+                    'created_at',
+                    'updated_at'
+                  ], 
     });
 
     return res.json(financial);
@@ -12,7 +22,7 @@ class FinancialController {
 
   async store(req, res) {
     const {
-      appointments_services_id,
+      appointments_id,
       total_value,
       discount_percentage,
       discount_value,
@@ -23,7 +33,7 @@ class FinancialController {
     } = req.body;
 
     const financial = await Financial.create({
-      appointments_services_id,
+      appointments_id,
       total_value,
       discount_percentage,
       discount_value,
@@ -38,7 +48,7 @@ class FinancialController {
 
   async update(req, res) {
     const {
-      appointments_services_id,
+      appointments_id,
       total_value,
       discount_percentage,
       discount_value,
@@ -49,7 +59,7 @@ class FinancialController {
 
     const financial = await Financial.update(
       {
-        appointments_services_id,
+        appointments_id,
         total_value,
         discount_percentage,
         discount_value,
@@ -61,7 +71,7 @@ class FinancialController {
     );
 
     return res.json({
-        appointments_services_id,
+        appointments_id,
         total_value,
         discount_percentage,
         discount_value,
