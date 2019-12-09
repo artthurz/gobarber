@@ -12,6 +12,7 @@ import AppointmentsServices from '../app/models/AppointmentsServices';
 import databaseConfig from '../config/database';
 import Financial from '../app/models/Financial';
 import Audit from '../app/models/Audit';
+import Role from '../app/models/Role';
 
 const models = [
   Appointment,
@@ -22,7 +23,8 @@ const models = [
   HoraryConfiguration,
   Peoples,
   Services,
-  User
+  User,
+  Role,
 ];
 
 class Database {

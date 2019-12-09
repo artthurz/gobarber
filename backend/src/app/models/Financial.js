@@ -23,7 +23,6 @@ class Financial extends Model {
       foreignKey: 'appointments_id',
       as: 'appointment',
     });
-    
   }
 }
 

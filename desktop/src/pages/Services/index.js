@@ -1,13 +1,7 @@
 // NOVO
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Container,
-  ButtonSave,
-  ButtonBack,
-  Slide,
-  DivForm,
-} from './styles';
+import { Container, ButtonSave, ButtonBack, Slide, DivForm } from './styles';
 import MaskedInput from 'react-text-mask';
 import { toast } from 'react-toastify';
 
@@ -21,8 +15,12 @@ export default function Services() {
   const [active, setActive] = useState();
 
   async function handleSubmit() {
-    if (name == null || undefined || (price == null || undefined) 
-        || (duration == null || undefined)) {
+    if (
+      name == null ||
+      undefined ||
+      (price == null || undefined) ||
+      (duration == null || undefined)
+    ) {
       toast.error(
         'Falha ao realizar o cadastro, prencha os campos obrigatórios! ( * )'
       );
@@ -39,7 +37,6 @@ export default function Services() {
       data = { ...data, active };
     }
 
-    
     await api.post('configuration/services', data);
     toast.success('Cadastro realizado com sucesso');
   }
@@ -47,7 +44,7 @@ export default function Services() {
   return (
     <Container>
       <aside>
-        <strong>Cadastrar novo serviço</strong>
+        <strong>Cadastrar Serviço</strong>
         <ButtonBack>
           <Link to="/services">Voltar</Link>
         </ButtonBack>
@@ -63,24 +60,13 @@ export default function Services() {
           placeholder="Descrição"
           onChange={e => setDescription(e.target.value)}
         />
-        <MaskedInput
-          mask={[
-            /[0-9]/,
-            /\d/,
-            /\d/,
-            ',',
-            /\d/,
-            /\d/,
-          ]}
+        <input
           name="price"
           placeholder="* Preço"
           onChange={e => setPrice(e.target.value)}
         />
         <MaskedInput
-          mask={[
-            /[0-9]/,
-            /\d/,
-          ]}
+          mask={[/[0-9]/, /\d/]}
           name="duration"
           placeholder="* Duração em minutos"
           onChange={e => setDuration(e.target.value)}

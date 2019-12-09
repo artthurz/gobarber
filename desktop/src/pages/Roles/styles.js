@@ -11,25 +11,6 @@ export const Container = styled.div`
       color: #fff;
     }
 
-    button {
-      align-self: right;
-      margin: 0;
-      height: 36px;
-      width: 100px;
-      /*background: #e1b941;*/
-      background: #69e141;
-      font-weight: bold;
-      color: #fff;
-      border: 0;
-      border-radius: 4px;
-      font-size: 16px;
-      transition: background 0.2s;
-
-      &:hover {
-        /*background: ${darken(0.08, '#e1b941')};*/
-        background: ${darken(0.08, '#69e141')};
-      }
-    }
   }
 
   strong{
@@ -37,7 +18,7 @@ export const Container = styled.div`
     color: #fff;
     font-size: 24px;
     justify-content: center;
-    margin-right: 25%;
+    margin-right: 18%;
     margin-left: 31%;
   }
 
@@ -175,71 +156,7 @@ export const Price = styled.div`
   }
 `;
 
-export const Slide = styled.div`
-    display: flex;
-    align-self: center;
-    align-items: center;
-
-    span {
-      display: flex;
-      color: #fff;
-      min-width: 65px;
-      margin: 10px;
-    }
-
-    label {
-      margin-left: 20px;
-    }
-
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-      outline: none;
-    }
-    .switch input {
-      position: absolute;
-      top: -99999px;
-      left: -99999px;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      -webkit-transition: 0.4s;
-      transition: 0.4s;
-      border-radius: 34px;
-    }
-    .slider:before {
-      position: absolute;
-      content: '';
-      height: 26px;
-      width: 26px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      -webkit-transition: 0.4s;
-      transition: 0.4s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background-color: #69e141;
-    }
-    input:focus + .slider {
-      box-shadow: 0 0 1px #69e141;
-    }
-    input:checked + .slider:before {
-      -webkit-transform: translateX(26px);
-      -ms-transform: translateX(26px);
-      transform: translateX(26px);
-    }
-  }
-`;
+export const Slide = styled.div``;
 
 export const BtnEditar = styled.button`
   margin: 5px 0 0;
@@ -287,4 +204,27 @@ export const Buttons = styled.div`
 export const SelectDiv = styled.div`
   max-height: 54px;
   margin-top: 3%;
+`;
+
+export const ButtonBack = styled.button`
+  a {
+      color: #fff;
+    }
+      align-self: right;
+      margin: 0 0 0;
+      height: 36px;
+      width: 100px;
+      background: #e1b941;
+      /*background: #69e141;*/
+      font-weight: bold;
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background 0.2s;
+
+      &:hover {
+        background: ${darken(0.08, '#e1b941')};
+       /* background: ${darken(0.08, '#69e141')};*/
+      }
 `;

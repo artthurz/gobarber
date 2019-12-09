@@ -7,7 +7,7 @@ class Audit extends Model {
         date_action: Sequelize.DATE,
         operation: Sequelize.TEXT,
         table_action: Sequelize.TEXT,
-        text_action: Sequelize.TEXT,        
+        text_action: Sequelize.TEXT,
       },
       {
         sequelize,

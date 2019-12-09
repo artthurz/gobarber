@@ -26,7 +26,6 @@ export default function Peoples() {
   const [provider, setProvider] = useState();
   const [users_id, setUsers_id] = useState();
   const [user, setUser] = useState([]);
-  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     async function loadclients() {
@@ -41,19 +40,12 @@ export default function Peoples() {
       }
 
       setUser(elements);
-      setUsers(response.data);
     }
     loadclients();
   }, []);
 
   async function handleSelectUser(id) {
-    if (users_id === id.value) {
-      setUsers_id();
-      return;
-    }
     setUsers_id(id.value);
-
-    console.log(users_id);
   }
 
   async function handleSubmit() {

@@ -12,6 +12,7 @@ class User extends Model {
         admin: Sequelize.BOOLEAN,
         status: Sequelize.BOOLEAN,
         avatar_id: Sequelize.INTEGER,
+        role_id: Sequelize.INTEGER,
       },
       {
         sequelize,
@@ -29,6 +30,7 @@ class User extends Model {
 
   static associate(models) {
     this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+    this.belongsTo(models.Role, { foreignKey: 'role_id', as: 'role' });
   }
 
   cheackPassword(password) {

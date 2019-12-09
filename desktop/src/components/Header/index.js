@@ -7,7 +7,7 @@ import { MdSettings } from 'react-icons/md';
 import Notifications from '~/components/Notifications';
 
 import logoBlue from '~/assets/logo-blue.svg';
-import { Container, Content, Profile, Configuration } from './styles';
+import { Container, Content, Profile } from './styles';
 
 export default function Header() {
   const profile = useSelector(state => state.user.profile);
@@ -24,13 +24,6 @@ export default function Header() {
           </Link>
 
           <aside>
-            <Configuration>
-              <Link to="/configuration">
-                <nav>
-                  <MdSettings color="#4169e1" size={20} />
-                </nav>
-              </Link>
-            </Configuration>
             <Notifications />
             <Profile>
               <div>
@@ -56,15 +49,7 @@ export default function Header() {
         </Link>
 
         <aside>
-          <Configuration>
-            <Link to="/configuration">
-              <nav>
-                <MdSettings color="#4169e1" size={20} />
-              </nav>
-            </Link>
-          </Configuration>
           <Notifications />
-
           <Profile>
             <div>
               <strong>{profile.name}</strong>

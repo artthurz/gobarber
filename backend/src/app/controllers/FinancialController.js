@@ -1,94 +1,72 @@
 import Financial from '../models/Financial';
+import Appointment from '../models/Appointment';
+import Sequelize from 'sequelize';
+import Peoples from '../models/Peoples';
+import User from '../models/User';
 
 class FinancialController {
-  
   async index(req, res) {
     const financial = await Financial.findAll({
-      where: { status: true },
-      attributes: ['id', 
-                    'appointments_id',
-                    'total_value',
-                    'discount_percentage',
-                    'discount_value',
-                    'observation',
-                    'status',
-                    'created_at',
-                    'updated_at'
-                  ], 
-    });
-
-    return res.json(financial);
-  }
-
-  async store(req, res) {
-    const {
-      appointments_id,
-      total_value,
-      discount_percentage,
-      discount_value,
-      observation,
-      status,
-      created_at,
-      updated_at,
-    } = req.body;
-
-    const financial = await Financial.create({
-      appointments_id,
-      total_value,
-      discount_percentage,
-      discount_value,
-      observation,
-      status,
-      created_at,
-      updated_at,
+      attributes: [
+        'id',
+        'appointments_id',
+        'total_value',
+        'discount_percentage',
+        'discount_value',
+        'observation',
+        'status',
+        'created_at',
+        'updated_at',
+      ],
+      include: [
+        {
+          model: Appointment,
+          as: 'appointment',
+          include: [
+            {
+              model: Peoples,
+              as: 'user',
+            },
+            {
+              model: User,
+              as: 'provider',
+            },
+          ],
+        },
+      ],
+      order: [Sequelize.col('status'), ['createdAt', 'DESC']],
     });
 
     return res.json(financial);
   }
 
   async update(req, res) {
-    const {
-      appointments_id,
-      total_value,
-      discount_percentage,
-      discount_value,
-      observation,
-      created_at,
-      updated_at,
-    } = req.body;
+    const fin = await Financial.findAll({
+      attributes: ['id', 'total_value'],
+      where: { id: req.params.id },
+    });
 
-    const financial = await Financial.update(
+    const { discount_percentage, observation, status } = req.body;
+
+    const discount_value =
+      fin[0].total_value - (fin[0].total_value / 100) * discount_percentage;
+
+    await Financial.update(
       {
-        appointments_id,
-        total_value,
         discount_percentage,
         discount_value,
         observation,
-        created_at,
-        updated_at,
+        status,
       },
       { where: { id: req.params.id } }
     );
 
     return res.json({
-        appointments_id,
-        total_value,
-        discount_percentage,
-        discount_value,
-        observation,
-        created_at,
-        updated_at,
+      discount_percentage,
+      discount_value,
+      observation,
+      status,
     });
-  }
-  
-  async delete(req, res) {
-    const financial = await Financial.findByPk(req.params.id);
-
-    financial.status = false;
-
-    await financial.save();
-
-    return res.json(financial);
   }
 }
 

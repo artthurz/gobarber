@@ -122,7 +122,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Financial = styled.div`
+export const User = styled.div`
   padding: 20px;
   border-radius: 4px;
   background: #fff;
@@ -282,4 +282,9 @@ export const BtnDeletar = styled.button`
 export const Buttons = styled.div`
   margin-top: 5%;
   margin-left: 5%;
+`;
+
+export const SelectDiv = styled.div`
+  max-height: 54px;
+  margin-top: 3%;
 `;

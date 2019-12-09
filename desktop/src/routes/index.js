@@ -15,9 +15,10 @@ import PeoplesUpdate from '~/pages/PeoplesUpdate';
 import Users from '~/pages/Users';
 import UsersUpdate from '~/pages/UsersUpdate';
 import Financials from '~/pages/Financials';
-import FinancialsUpdate from '~/pages/FinancialsUpdate';
 import Appointments from '~/pages/Appointments';
-
+import Grafics from '~/pages/Grafics';
+import RolesUpdate from '~/pages/RolesUpdate';
+import Roles from '~/pages/Roles';
 
 export default function Routes() {
   return (
@@ -34,9 +35,11 @@ export default function Routes() {
       <Route path="/peoples" component={PeoplesUpdate} isPrivate />
       <Route path="/userscreate" component={Users} isPrivate />
       <Route path="/users" component={UsersUpdate} isPrivate />
-      <Route path="/financialscreate" component={Financials} isPrivate />
-      <Route path="/financials" component={FinancialsUpdate} isPrivate />
+      <Route path="/financials" component={Financials} isPrivate />
       <Route path="/appointments" component={Appointments} isPrivate />
+      <Route path="/grafics" component={Grafics} isPrivate />
+      <Route path="/roles" component={RolesUpdate} isPrivate />
+      <Route path="/rolescreate" component={Roles} isPrivate />
     </Switch>
   );
 }

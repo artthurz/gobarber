@@ -35,7 +35,7 @@ export default function Services() {
     async function loadServices() {
       const response = await api.get('configuration/services');
 
-      let elements = [];
+      const elements = [];
 
       for (const { id, name } of response.data) {
         elements.push({
@@ -61,7 +61,7 @@ export default function Services() {
         }
       }
 
-      let elements = [];
+      const elements = [];
 
       for (const { id, name } of data) {
         elements.push({
@@ -119,7 +119,6 @@ export default function Services() {
       }
     }
 
-    console.log(appointment);
     await api.post('appointments', appointment);
     toast.success('Agendamento realizado com sucesso');
     setServices_id();
@@ -130,7 +129,7 @@ export default function Services() {
 
   async function handleSelectProvider(id) {
     if (provider_id === id.value) {
-      //setProvider_id();
+      // setProvider_id();
       return;
     }
     setProvider_id(id.value);

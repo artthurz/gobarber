@@ -36,6 +36,7 @@ export const SideMenu = styled.div`
 `;
 
 export const Calendar = styled.div`
+  border-top: 20px;
   button {
     background: none;
   }
@@ -112,4 +113,45 @@ export const Servico = styled.div`
     margin-top: 3px;
     color: ${props => (props.available ? '#999' : '#666')};
   }
+`;
+
+export const BtnCancelar = styled.button`
+  margin: 5px 0 0;
+  height: 36px;
+  width: 230px;
+  background: #e14169;
+  font-weight: bold;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${darken(0.08, '#e14169')};
+  }
+`;
+
+export const NewAppointmentDisabled = styled.div`
+  margin-left: 18%;
+  margin-bottom: 10%;
+
+  button{
+      cursor: default;
+      opacity: 50%
+      align-self: right;
+      margin: 0;
+      height: 36px;
+      width: 150px;
+      background: #69e141;
+      font-weight: bold;
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+`;
+
+export const SelectDiv = styled.div`
+  max-height: 54px;
 `;

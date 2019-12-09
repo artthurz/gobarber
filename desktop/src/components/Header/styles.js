@@ -81,10 +81,3 @@ export const Profile = styled.div`
     background: #eee;
   }
 `;
-
-export const Configuration = styled.button`
-  margin-right: 10px;
-  background: none;
-  border: 0;
-  position: relative;
-`;

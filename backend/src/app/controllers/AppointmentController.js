@@ -8,7 +8,7 @@ import Notification from '../schemas/Notification';
 import AppointmentsServices from '../models/AppointmentsServices';
 import Services from '../models/Services';
 import Financial from '../models/Financial';
-
+import Audit from '../models/Audit';
 
 import CancellationMail from '../jobs/CancellationMail';
 import Queue from '../../lib/Queue';
@@ -116,6 +116,26 @@ class AppointmentController {
       };
     }
 
+    let tvalue = 0;
+    const srvcs = await Services.findAll();
+
+    for (let i = 0; i < services_id.length; i++) {
+      for (let l = 0; l < srvcs.length; l++) {
+        if (services_id[i] === srvcs[l].id) {
+          tvalue += srvcs[l].price;
+        }
+      }
+    }
+
+    const financ = {
+      total_value: tvalue,
+      discount_value: tvalue,
+      status: false,
+      appointments_id: appointmentId.id,
+    };
+
+    const financial = await Financial.create(financ);
+
     const services = await AppointmentsServices.bulkCreate(appserv, {
       returning: true,
     });
@@ -133,12 +153,43 @@ class AppointmentController {
       }
     );
 
+    // Auditorias
+
+    const auditServicos = {
+      user_id: req.userID,
+      date_action: new Date(),
+      operation: 'Insert',
+      table_action: 'appointment_services',
+      text_action: `Criar servicos de agendamento para o agendamento ID: ${appointmentId.id}`,
+    };
+    await Audit.create(auditServicos);
+
+    const auditFinanceiro = {
+      user_id: req.userID,
+      date_action: new Date(),
+      operation: 'Insert',
+      table_action: 'Financials',
+      text_action: `Criar Financeiro ID: ${financial.id}`,
+    };
+    await Audit.create(auditFinanceiro);
+
+    const auditAgendamento = {
+      user_id: req.userID,
+      date_action: new Date(),
+      operation: 'Insert',
+      table_action: 'Appointments',
+      text_action: `Criar Agendamento ID: ${appointmentId.id}`,
+    };
+    await Audit.create(auditAgendamento);
+
+    // Notificações
+
     await Notification.create({
       content: `Novo agendamento de ${user.name} para ${formattedDate}`,
       user: provider_id,
     });
 
-    return res.json({ appointment, services });
+    return res.json({ appointment, services, financial });
   }
 
   async update(req, res) {}
@@ -152,18 +203,18 @@ class AppointmentController {
           attributes: ['name', 'login'],
         },
         {
-          model: User,
+          model: Peoples,
           as: 'user',
           attributes: ['name'],
         },
       ],
     });
 
-    if (appointment.user_id !== req.userID) {
+    /* if (appointment.user_id !== req.userID) {
       return res.status(401).json({
         error: "You don't have permission to cancel this appointment.",
       });
-    }
+    } */
 
     const dateWithSub = subHours(appointment.date, 2);
 
@@ -173,9 +224,20 @@ class AppointmentController {
       });
     }
 
+    await Financial.destroy({ where: { appointments_id: appointment.id } });
+
     appointment.canceled_at = new Date();
 
     await appointment.save();
+
+    const audit = {
+      user_id: req.userID,
+      date_action: new Date(),
+      operation: 'Update',
+      table_action: 'Appointments',
+      text_action: `Cancelar Agendamento ID: ${req.params.id}`,
+    };
+    await Audit.create(audit);
 
     await Queue.add(CancellationMail.key, {
       appointment,
@@ -183,72 +245,6 @@ class AppointmentController {
 
     return res.json(appointment);
   }
-
-  async geraFinanceiro(req, res) {
-
-    var totalValor = 0;
-
-    const appointment = await Appointment.findByPk(req.params.appointment_id);
-    const people = await Peoples.findByPk(appointment.client_id);
-    const appointment_services = await AppointmentsServices.findAll({ where: {appointments_id: appointment.id}} );
-
-    const count = await AppointmentsServices.findAndCountAll({ where: {appointments_id: appointment.id}} );
-    
-    for (let i = 0; i < count.count; i++) {
-      const item = appointment_services[i];
-      
-      const service = await Services.findOne({ where: {id: item.services_id}} );
-            
-      var appointments_services_id = item.id;
-      var total_value = service.price;
-      var status = false;
-      var observation = "Serviço: "+service.name+" Cliente: "+people.name;  
-      
-      var fin = [];
-      fin[i] = {appointments_services_id,
-        total_value,
-        status,
-        observation};      
-    }
-    console.log("AQUI AQUI AQUI AQUI AQUI");
-    console.log(fin);
-    console.log("AQUI AQUI AQUI AQUI AQUI");
-    const financials = await Financial.create(fin);
-
-    return res.json(financials);
-  }
-
-  async calculaTempo(appointment_id) {
-
-    
-
-
-    
-    return res.json(appointments);
-  }
-
-  async calculaValor(appointment_id) {
-    
-    var totalValor = 0;
-
-    const appointment = await Appointment.findByPk(req.params.appointment_id);
-    const appointment_services = await AppointmentsServices.findAll({ where: {appointments_id: appointment.id}} );
-    
-    async function somar(item) {
-      const service = await Services.findOne({ where: {id: item.services_id}} );
-      var valor = service.price;
-
-      totalValor += valor;
-
-      console.log(totalValor);
-    }
-    
-    appointment_services.forEach(somar);
-
-    return res.json(totalValor);
-
-  }
-
 }
 
 export default new AppointmentController();

@@ -24,12 +24,12 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false,
-      }, 
+      },
       secretary: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false,
-      }, 
+      },
       status: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
@@ -39,6 +39,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'files', key: 'id' },
         defaultValue: 1,
+        allowNull: false,
+      },
+      role_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'roles', key: 'id' },
         allowNull: false,
       },
       created_at: {

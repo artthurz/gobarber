@@ -5,10 +5,6 @@ export const Container = styled.div`
   max-width: 600px;
   margin: 30px auto;
 
-
-
-
-
   strong{
     display: flex;
     color: #fff;
@@ -16,8 +12,6 @@ export const Container = styled.div`
     justify-content: center;
     margin: 0 15px;
   }
-  aside {
-    justify-self: right;
   span {
       margin: 15px;
       color: rgba(255, 255, 255, 0.7);
@@ -37,7 +31,7 @@ export const Container = styled.div`
       color: rgba(255, 255, 255, 0.7);
     }
   }
-}
+
 
   ul {
     display: flex;

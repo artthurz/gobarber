@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import User from '../models/User';
 import File from '../models/File';
+import Audit from '../models/Audit';
 
 class UserController {
   async index(req, res) {
@@ -33,10 +34,19 @@ class UserController {
       return res.status(400).json({ error: 'User already exists.' });
     }
 
-    const { id, name, login, admin } = await User.create({
+    const { id, name, login, admin, role_id } = await User.create({
       ...req.body,
       avatar_id,
     });
+
+    const auditUser = {
+      user_id: req.userID,
+      date_action: new Date(),
+      operation: 'Insert',
+      table_action: 'Users',
+      text_action: `ID: ${id}, Name: ${name}, Login: ${login}, Role_id: ${role_id}, Admin: ${admin}, Avatar_id: ${avatar_id}`,
+    };
+    await Audit.create(auditUser);
 
     return res.json({
       id,
@@ -44,6 +54,7 @@ class UserController {
       login,
       admin,
       avatar_id,
+      role_id,
     });
   }
 
@@ -96,11 +107,58 @@ class UserController {
       ],
     });
 
+    const auditUser = {
+      user_id: req.userID,
+      date_action: new Date(),
+      operation: 'Update',
+      table_action: 'Users',
+      text_action: `ID: ${id}, Name: ${name}, Login: ${login}, Avatar: ${avatar}`,
+    };
+    await Audit.create(auditUser);
+
     return res.json({
       id,
       name,
       login,
       avatar,
+    });
+  }
+
+  async updateAdm(req, res) {
+    const { name, login, role_id } = req.body;
+
+    console.log(req.body);
+
+    const userExists = await User.findOne({
+      where: { login },
+    });
+
+    console.log(req.params.id, userExists.id);
+
+    if (req.params.id != userExists.id) {
+      if (userExists) {
+        return res.status(400).json({ error: 'User already exists.' });
+      }
+    }
+
+    const user = await User.update(
+      { name, login, role_id },
+      { where: { id: req.params.id } }
+    );
+
+    const auditUser = {
+      user_id: req.userID,
+      date_action: new Date(),
+      operation: 'Update',
+      table_action: 'Users',
+      text_action: `ID: ${req.params.id}, Name: ${name}, Login: ${login}, Role_id: ${role_id}`,
+    };
+    await Audit.create(auditUser);
+
+    return res.json({
+      name,
+      login,
+      role_id,
     });
   }
 

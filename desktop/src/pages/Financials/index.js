@@ -1,25 +1,33 @@
-// NOVO
+// LISTA + EDITA
 import React, { useState, useEffect } from 'react';
 import { Form, Input } from '@rocketseat/unform';
-import { Link } from 'react-router-dom';
-import { Container } from './styles';
-import * as Yup from 'yup';
+import DatePicker from 'react-datepicker';
+import { toast } from 'react-toastify';
+import Select from 'react-select';
+import {
+  Container,
+  Financial,
+  Price,
+  BtnEditar,
+  Buttons,
+  Others,
+  BtnPagar,
+  BtnPagarDisabled,
+  BtnEditarDisabled,
+  SelectDiv,
+} from './styles';
 
 import api from '~/services/api';
 
-const schema = Yup.object().shape({
-  total_value: Yup.string().required('O Valor total é obrigatório'),
-  appointments_services_id: Yup.string().required('O Serviço é obrigatório'),
-  status: Yup.string().required('Status? é obrigatório'),
-});
-
 export default function Financials() {
+  const [date, setDate] = useState();
   const [financials, setFinancials] = useState([]);
+  const [fin, setFin] = useState([]);
   const [mudou, setMudou] = useState([]);
 
   useEffect(() => {
     async function loadFinancials() {
-      const response = await api.get('financial');
+      const response = await api.get('financials');
 
       setFinancials(response.data);
     }
@@ -27,31 +35,109 @@ export default function Financials() {
   }, [mudou]);
 
   async function handleSubmit(data) {
-    await api.post('financial', data);
+    await api.put(`financials/${data.id}`, data);
     setMudou(Math.random() * 1000);
+  }
+
+  async function handleSelect(id) {
+    setFin(
+      financials.find(financial => (financial.id === id ? financial : null))
+    );
+  }
+
+  async function handlePayment(id) {
+    await api.put(`financials/${id}`, {
+      status: true,
+    });
+
+    setFinancials(
+      financials.map(financial =>
+        financial.id === id ? { ...financial, status: true } : financial
+      )
+    );
   }
 
   return (
     <Container>
       <aside>
-        <strong>Nova Finança</strong>
-        <button>
-          <Link to="/financials">Voltar</Link>
-        </button>
+        <strong>Finanças</strong>
       </aside>
-      <Form schema={schema} initialData={null} onSubmit={handleSubmit}>
-        <Input name="total_value" placeholder="Valor total" />
-        <Input name="discount_percentage" placeholder="Desconto %" />
-        <Input name="discount_value" placeholder="Desconto R$" />
-        <Input name="value" placeholder="Valor final" />
-        <Input name="appointments_services_id" placeholder="Serviço" />
-        <Input name="observation" placeholder="Observação" />
-        <Input name="status" placeholder="Status?" />    
+      <Form initialData={fin} onSubmit={handleSubmit}>
+        <Input disabled name="id" placeholder="ID" />
+        <Input name="observation" placeholder="Obseravação" />
+        <Input name="discount_percentage" placeholder="Desconto" />
         <hr />
-        <button type="submit">
-          <Link to="/financials">Salvar</Link>
-        </button>
+        <button type="submit">Salvar</button>
       </Form>
+      <ul>
+        {financials.map(financial => (
+          <Financial key={financial.id}>
+            <div>
+              <strong>{financial.appointment.user.name}</strong>
+              <span>{financial.observation}</span>
+            </div>
+            <Price>
+              <aside>
+                <div>
+                  <strong>Valor: </strong>
+                </div>
+                <span>R${financial.total_value}</span>
+              </aside>
+            </Price>
+            <Others>
+              <aside>
+                <div>
+                  <strong>Desconto: </strong>
+                </div>
+                <span>
+                  {financial.discount_percentage
+                    ? financial.discount_percentage
+                    : '0'}{' '}
+                  %
+                </span>
+              </aside>
+            </Others>
+            <Price>
+              <aside>
+                <div>
+                  <strong>Valor a pagar: </strong>
+                </div>
+                <span>R${financial.discount_value}</span>
+              </aside>
+            </Price>
+            <aside>
+              <strong>Status: </strong>
+              <span>{financial.status === true ? 'Pago' : 'Em haver'}</span>
+            </aside>
+            <Buttons>
+              {(!financial.status && (
+                <BtnEditar
+                  type="button"
+                  onClick={() => handleSelect(financial.id)}
+                >
+                  Editar
+                </BtnEditar>
+              )) || (
+                <BtnEditarDisabled disabled type="button">
+                  Editar
+                </BtnEditarDisabled>
+              )}
+              {(!financial.status && (
+                <BtnPagar
+                  type="button"
+                  onClick={() => handlePayment(financial.id)}
+                >
+                  Receber
+                </BtnPagar>
+              )) || (
+                <BtnPagarDisabled disabled type="button">
+                  Pago
+                </BtnPagarDisabled>
+              )}
+            </Buttons>
+          </Financial>
+        ))}
+      </ul>
     </Container>
   );
 }
